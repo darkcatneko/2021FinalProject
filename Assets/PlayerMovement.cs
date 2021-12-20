@@ -36,4 +36,6 @@ public class PlayerMovement : MonoBehaviour
         float scaleX = this.transform.localScale.x*-1;
         this.transform.localScale = new Vector3(scaleX, this.transform.localScale.y,this.transform.localScale.z);
     }
+
+    
 }
