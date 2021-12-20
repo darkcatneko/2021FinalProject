@@ -38,12 +38,12 @@ public class CamScroll : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel")>0)
         {
             sc += 0.1f;
-            sc = Mathf.Clamp(sc, 1f, 2f);
+            sc = Mathf.Clamp(sc, 1.2f, 2f);
         }
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             sc -= 0.1f;
-            sc = Mathf.Clamp(sc, 1f, 2f);
+            sc = Mathf.Clamp(sc, 1.2f, 2f);
         }
        
     }
