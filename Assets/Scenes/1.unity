@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -825,8 +825,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648112575}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.95, y: 0, z: -9.04}
-  m_LocalScale: {x: 5.3955307, y: 0.06357895, z: 2.8909824}
+  m_LocalPosition: {x: 1.2, y: 0, z: -8.94}
+  m_LocalScale: {x: 9.40241, y: 0.110794544, z: 6.6354895}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
@@ -1151,15 +1151,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 70f4dcad9ded4354997bd9da2b4052a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.089
+      value: 1.31
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 70f4dcad9ded4354997bd9da2b4052a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.03178954
+      value: 0.031
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 70f4dcad9ded4354997bd9da2b4052a4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.998
+      value: -8.078
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 70f4dcad9ded4354997bd9da2b4052a4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1189,14 +1189,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1041279737980340588, guid: 70f4dcad9ded4354997bd9da2b4052a4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3c596099469ac8b42829ced6679bcad1, type: 2}
     - target: {fileID: 919132149155446097, guid: 70f4dcad9ded4354997bd9da2b4052a4, type: 3}
       propertyPath: m_Name
-      value: final home
+      value: JR house
       objectReference: {fileID: 0}
     - target: {fileID: 8424073627695423409, guid: 70f4dcad9ded4354997bd9da2b4052a4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 62369d19296b7984cab76af0e72e3fbe, type: 2}
+    - target: {fileID: 8835409689826365435, guid: 70f4dcad9ded4354997bd9da2b4052a4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3c596099469ac8b42829ced6679bcad1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70f4dcad9ded4354997bd9da2b4052a4, type: 3}
 --- !u!1 &1342375272 stripped
