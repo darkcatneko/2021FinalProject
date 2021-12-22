@@ -10,7 +10,9 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
 
     Vector3 movement;
-    
+
+   
+  
     void Update()
     {
        movement.x = Input.GetAxisRaw("Horizontal");
@@ -33,8 +35,8 @@ public class PlayerMovement : MonoBehaviour
     private void Flip()
     {
         m_FacingRight = !m_FacingRight;
-        float scaleX = this.transform.localScale.x*-1;
-        this.transform.localScale = new Vector3(scaleX, this.transform.localScale.y,this.transform.localScale.z);
+        float scaleX = this.transform.localScale.x*-1;        
+        this.transform.localScale = new Vector3(scaleX, this.transform.localScale.y,this.transform.localScale.z);        
     }
 
     
