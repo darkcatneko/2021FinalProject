@@ -7,6 +7,8 @@ public class InGameTime : MonoBehaviour
 {
     [SerializeField]
     private bool TimeToWake = false;
+    [SerializeField]
+    private GoToBed gotobed;
 
     public Text text;
     public int PassSec = 420 * 60;
@@ -62,7 +64,7 @@ public class InGameTime : MonoBehaviour
     }
     public void Start_A_New_Day(int EnergyWaste)
     {
-        GameDay++;
+        GameDay++;        
         PassSec = 420 * 60 + EnergyWaste * 7200;
         PassMin = PassSec / 60;
         PassMin = Mathf.Clamp(PassMin, 420, 1500);
@@ -121,11 +123,13 @@ public class InGameTime : MonoBehaviour
             if (Hour<23)
             {
                 EnergyWaste = 0;
+                gotobed.AllPlantGrow();
                 Start_A_New_Day(0);
                 TimeToWake = false;
             }
             else
             {
+                gotobed.AllPlantGrow();
                 Start_A_New_Day(EnergyWaste);
                 if (EnergyWaste == 3)
                 {

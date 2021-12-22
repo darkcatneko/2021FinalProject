@@ -10,13 +10,7 @@ public class GoToBed : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.G))
             {
-                Debug.Log("growing time");
-                GameObject[] Plants;
-                Plants = GameObject.FindGameObjectsWithTag("Plant");
-                foreach (var item in Plants)
-                {
-                    item.GetComponent<PlantPerform>().TimePass();
-                }
+                AllPlantGrow();
             }
         }
     }
@@ -25,6 +19,17 @@ public class GoToBed : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log(other.name + "is out");
+        }
+    }
+
+    public void AllPlantGrow()
+    {
+        Debug.Log("growing time");
+        GameObject[] Plants;
+        Plants = GameObject.FindGameObjectsWithTag("Plant");
+        foreach (var item in Plants)
+        {
+            item.GetComponent<PlantPerform>().TimePass();
         }
     }
 }

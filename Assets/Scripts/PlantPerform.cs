@@ -15,7 +15,7 @@ public class PlantPerform : MonoBehaviour
         mature,
         grown,
     }
-    PlantState plantState = PlantState.seed;       
+    PlantState plantState = PlantState.seed;           
     void Update()
     {        
         switch((int)plantState)
