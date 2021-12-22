@@ -1600,7 +1600,7 @@ MonoBehaviour:
   Hour: 0
   Min: 0
   Sec: 0
-  RealTimePass: 1800
+  RealTimePass: 30
   TimeToGoToBed: 1500
   GameDay: 0
   EnergyWaste: 0
