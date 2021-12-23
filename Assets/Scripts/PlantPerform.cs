@@ -2,23 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlantState
+{
+    seed,
+    young,
+    mature,
+    grown,
+}
+
+public enum WhichPlant
+{
+    cabbage,
+    tomato,
+    corn,
+}
+
 public class PlantPerform : MonoBehaviour
 {
     public Material SeedMat;
     public Material YoungMat;
     public Material MatureMat;
     public Material grownMat;
-    public enum PlantState
-    {
-        seed,
-        young,
-        mature,
-        grown,
-    }
-    PlantState plantState = PlantState.seed;           
+    
+    public PlantState plantState = PlantState.seed;
+    [SerializeField] WhichPlant which;
     void Update()
     {        
-        switch((int)plantState)
+        
+    }
+
+    public void TimePass()
+    {
+        plantState++;
+        PlantUpdate();
+        Mathf.Clamp((int)plantState, 0, 3);
+    }
+
+    public int GetPlantState()
+    {
+        int state;
+        state = (int)plantState;
+        return state;
+    }
+
+    void PlantUpdate()
+    {
+        switch ((int)plantState)
         {
             case 0:
                 this.gameObject.GetComponent<MeshRenderer>().material = SeedMat;
@@ -34,18 +63,5 @@ public class PlantPerform : MonoBehaviour
                 break;
 
         }
-    }
-
-    public void TimePass()
-    {
-        plantState++;
-        Mathf.Clamp((int)plantState, 0, 3);
-    }
-
-    public int GetPlantState()
-    {
-        int state;
-        state = (int)plantState;
-        return state;
     }
 }

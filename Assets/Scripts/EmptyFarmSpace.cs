@@ -37,7 +37,7 @@ public class EmptyFarmSpace : MonoBehaviour
             Debug.Log(other.name + "is out");
         }
     }
-
+    //funtion(id) 根據植物id生成植物
     
     
 }
