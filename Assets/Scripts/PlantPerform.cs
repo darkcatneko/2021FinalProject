@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public enum PlantState
 {
     seed,
@@ -12,9 +14,17 @@ public enum PlantState
 
 public enum WhichPlant
 {
+    EmptySpace,
     cabbage,
     tomato,
     corn,
+}
+
+public class PlantIdentity
+{
+   public PlantState plantState;
+    WhichPlant which;
+    //還需要建構PID
 }
 
 public class PlantPerform : MonoBehaviour
@@ -25,7 +35,7 @@ public class PlantPerform : MonoBehaviour
     public Material grownMat;
     
     public PlantState plantState = PlantState.seed;
-    [SerializeField] WhichPlant which;
+    public WhichPlant which;
     void Update()
     {        
         

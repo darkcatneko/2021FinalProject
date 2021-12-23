@@ -2,32 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[System.Serializable]
+public class EmptyFarm
+{
+    public int FarmID;
+    public WhichPlant PlantWhich;
+
+    public EmptyFarm(int id, WhichPlant plant)
+    {
+        FarmID = id;
+        PlantWhich = plant;
+    }
+}
+
 public class EmptyFarmSpace : MonoBehaviour
 {
-    public GameObject CabbagePrefab;
-    //public GameObject TomatoPrefab;
-    //public GameObject CornPrefab;
-
+    public GameObject[] plantPrefab;  
     public GameObject testVFX;
-
+    public EmptyFarm thisfarmspace;
     public static bool InEmptyFarmRange;
+
+    public WhichPlant which = WhichPlant.EmptySpace;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             InEmptyFarmRange = true;
+            
         }
     }
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.O))
+        if (other.gameObject.CompareTag("Player"))
         {
-           Instantiate(CabbagePrefab, this.transform.position, Quaternion.Euler(45f,180f,0));
-           GameObject vfx = Instantiate(testVFX, this.transform.position, Quaternion.Euler(45f, 0, 0));
-            Destroy(vfx, 1f);
-            Destroy(this.gameObject);
+            if (Input.GetKeyDown(KeyCode.O))//plant a cabbage
+            {
+                       Instantiate(plantPrefab[0], this.transform.position, Quaternion.Euler(45f, 180f, 0));   
+                       GameObject vfx = Instantiate(testVFX, this.transform.position, Quaternion.Euler(45f, 0, 0));
+                       Destroy(vfx, 1f);
+                       this.gameObject.GetComponent<Collider>().enabled = false;
+                       thisfarmspace.PlantWhich = WhichPlant.cabbage;
+            }            
         }
+        
     }
     private void OnTriggerExit(Collider other)
     {

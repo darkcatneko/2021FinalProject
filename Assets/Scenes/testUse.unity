@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -140,8 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a75ddc965f0da459debb6c8cd60d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlantName: 
-  PlantID: 0
 --- !u!114 &111217612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +156,8 @@ MonoBehaviour:
   YoungMat: {fileID: 2100000, guid: 16bd178161a31d645a1ab3ff0ac4b77a, type: 2}
   MatureMat: {fileID: 2100000, guid: 16bd178161a31d645a1ab3ff0ac4b77a, type: 2}
   grownMat: {fileID: 2100000, guid: 84efe9483cd2be14fa250772e2e97ea8, type: 2}
+  plantState: 0
+  which: 0
 --- !u!114 &111217613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +191,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 860404944553729940, guid: 88dffff5223814e43aacffc580d24565, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e722077d7fc84574fa5c66dae76fa6bd, type: 2}
     - target: {fileID: 860404944553729942, guid: 88dffff5223814e43aacffc580d24565, type: 3}
       propertyPath: m_Name
       value: cabbage (2)
@@ -582,8 +586,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b2703ffa730a074c87e357c3871e01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CabbagePrefab: {fileID: 3482902784383453467, guid: f21aadeb38312894c9cd2ff497ba9ed0, type: 3}
+  plantPrefab:
+  - {fileID: 3482902784383453467, guid: f21aadeb38312894c9cd2ff497ba9ed0, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   testVFX: {fileID: 4813876964057856060, guid: c0860ae7473b03e4b8f3573dfa0a6e4e, type: 3}
+  thisfarmspace:
+    FarmID: 0
+    PlantWhich: 0
+  which: 0
 --- !u!114 &1063156990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,6 +723,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 860404944553729940, guid: 88dffff5223814e43aacffc580d24565, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e722077d7fc84574fa5c66dae76fa6bd, type: 2}
     - target: {fileID: 860404944553729942, guid: 88dffff5223814e43aacffc580d24565, type: 3}
       propertyPath: m_Name
       value: cabbage (1)
@@ -1183,8 +1198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a75ddc965f0da459debb6c8cd60d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlantName: 
-  PlantID: 0
 --- !u!114 &1666467869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1201,6 +1214,8 @@ MonoBehaviour:
   YoungMat: {fileID: 2100000, guid: 16bd178161a31d645a1ab3ff0ac4b77a, type: 2}
   MatureMat: {fileID: 2100000, guid: 16bd178161a31d645a1ab3ff0ac4b77a, type: 2}
   grownMat: {fileID: 2100000, guid: 84efe9483cd2be14fa250772e2e97ea8, type: 2}
+  plantState: 0
+  which: 0
 --- !u!114 &1666467870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1227,6 +1242,61 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 19.21
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1682849434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1682849436}
+  - component: {fileID: 1682849435}
+  m_Layer: 0
+  m_Name: packtest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1682849435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682849434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e7e4c5e15282446992bc84b8c92b4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData:
+  - Name: 
+  - Name: 
+  - Name: 
+  - Name: 
+  - Name: 
+  - Name: 
+  - Name: 
+  - Name: 
+  - Name: 
+  - Name: 
+  PlantPerforms: []
+--- !u!4 &1682849436
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682849434}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.73063236, y: -0.98681545, z: -3.2848904}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1882141164
 GameObject:
   m_ObjectHideFlags: 0
@@ -1599,6 +1669,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3482902784383453465, guid: f21aadeb38312894c9cd2ff497ba9ed0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e722077d7fc84574fa5c66dae76fa6bd, type: 2}
     - target: {fileID: 3482902784383453467, guid: f21aadeb38312894c9cd2ff497ba9ed0, type: 3}
       propertyPath: m_Name
       value: cabbageTest

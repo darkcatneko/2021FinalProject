@@ -5,17 +5,11 @@ using UnityEngine;
 
 public class CabbageInteract : MonoBehaviour
 {
-    public string PlantName;
-    public int PlantID;
     private void OnTriggerEnter(Collider other)
-    {       
+    {
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log(other.name + "is in");
-            if (Input.GetKeyDown(KeyCode.F) && this.gameObject.GetComponent<PlantPerform>().GetPlantState() == 3)
-            {
-                Debug.Log("get a mature cabbage!");
-            }
         }
     }
     private void OnTriggerStay(Collider other)
@@ -25,6 +19,15 @@ public class CabbageInteract : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F) && this.gameObject.GetComponent<PlantPerform>().GetPlantState() == 3)
             {
                 Debug.Log("get a mature cabbage!");
+                GameObject[] emptyplace;
+                emptyplace = GameObject.FindGameObjectsWithTag("emptyfarm");
+                for (int i = 0; i < emptyplace.Length; i++)
+                {
+                    if (emptyplace[i].GetComponent<EmptyFarmSpace>().thisfarmspace.FarmID==i)//抓取plantperform的class裡的id
+                    {
+
+                    }
+                }
                 Destroy(this.gameObject);
             }
         }

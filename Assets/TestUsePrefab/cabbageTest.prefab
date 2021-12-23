@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 84efe9483cd2be14fa250772e2e97ea8, type: 2}
+  - {fileID: 2100000, guid: e722077d7fc84574fa5c66dae76fa6bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,6 +127,8 @@ MonoBehaviour:
   YoungMat: {fileID: 2100000, guid: 16bd178161a31d645a1ab3ff0ac4b77a, type: 2}
   MatureMat: {fileID: 2100000, guid: 16bd178161a31d645a1ab3ff0ac4b77a, type: 2}
   grownMat: {fileID: 2100000, guid: 84efe9483cd2be14fa250772e2e97ea8, type: 2}
+  plantState: 0
+  which: 1
 --- !u!114 &4297845939609395681
 MonoBehaviour:
   m_ObjectHideFlags: 0
