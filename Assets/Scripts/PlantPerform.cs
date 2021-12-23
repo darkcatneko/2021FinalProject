@@ -23,11 +23,13 @@ public enum WhichPlant
 public class PlantIdentity
 {
    public int plantspaceID;
+   public bool Is_fertilize;
    public PlantState plantState;
    public WhichPlant which;
    //還需要建構PID
-   public PlantIdentity(PlantState plant_state, WhichPlant _which,int id)
+   public PlantIdentity(PlantState plant_state, WhichPlant _which,int id,bool is_fertilize)
     {
+        Is_fertilize = is_fertilize;
         plantState = plant_state;
         which = _which;
         plantspaceID = id;
@@ -80,8 +82,8 @@ public class PlantPerform : MonoBehaviour
 
         }
     }
-    public void SetPlantIdentity(PlantState plant_state, WhichPlant _which,int id)
+    public void SetPlantIdentity(PlantState plant_state, WhichPlant _which,int id,bool is_fertilize)
     {
-        This_Plant = new PlantIdentity(plant_state, _which,id);
+        This_Plant = new PlantIdentity(plant_state, _which,id, is_fertilize);
     }
 }

@@ -43,7 +43,7 @@ public class EmptyFarmSpace : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.O))//plant a cabbage
             {
                        GameObject planted_cabbage =  Instantiate(plantPrefab[0], this.transform.position, Quaternion.Euler(45f, 180f, 0));
-                       planted_cabbage.GetComponent<PlantPerform>().SetPlantIdentity(PlantState.seed, WhichPlant.cabbage, thisfarmspace.FarmID);
+                       planted_cabbage.GetComponent<PlantPerform>().SetPlantIdentity(PlantState.seed, WhichPlant.cabbage, thisfarmspace.FarmID,false);
                        GameObject vfx = Instantiate(testVFX, this.transform.position, Quaternion.Euler(45f, 0, 0));
                        Destroy(vfx, 1f);
                        this.gameObject.GetComponent<Collider>().enabled = false;
