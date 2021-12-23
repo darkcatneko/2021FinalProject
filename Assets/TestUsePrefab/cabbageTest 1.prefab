@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3482902784383453467
+--- !u!1 &7081806988133829029
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3482902784383453463}
-  - component: {fileID: 3482902784383453464}
-  - component: {fileID: 3482902784383453465}
-  - component: {fileID: 4297845939609395487}
-  - component: {fileID: 4297845939609395484}
-  - component: {fileID: 4297845939609395485}
-  - component: {fileID: 4297845939609395681}
+  - component: {fileID: 7081806988133829033}
+  - component: {fileID: 7081806988133829030}
+  - component: {fileID: 7081806988133829031}
+  - component: {fileID: 7617667598678253985}
+  - component: {fileID: 7617667598678253986}
+  - component: {fileID: 7617667598678253987}
+  - component: {fileID: 7617667598678253919}
   m_Layer: 0
-  m_Name: cabbageTest
+  m_Name: cabbageTest 1
   m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3482902784383453463
+--- !u!4 &7081806988133829033
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3482902784383453467}
+  m_GameObject: {fileID: 7081806988133829029}
   m_LocalRotation: {x: 0, y: 0.92387956, z: -0.38268343, w: 0}
   m_LocalPosition: {x: -1.1775513, y: 0.23537377, z: -5.6101418}
   m_LocalScale: {x: 0.012343167, y: 0.012343167, z: 0.012343167}
-  m_Children: []
+  m_Children:
+  - {fileID: 7617667599722308210}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 180, z: 0}
---- !u!33 &3482902784383453464
+--- !u!33 &7081806988133829030
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3482902784383453467}
+  m_GameObject: {fileID: 7081806988133829029}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3482902784383453465
+--- !u!23 &7081806988133829031
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3482902784383453467}
+  m_GameObject: {fileID: 7081806988133829029}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -85,39 +86,39 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4297845939609395487
+--- !u!135 &7617667598678253985
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3482902784383453467}
+  m_GameObject: {fileID: 7081806988133829029}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 19.21
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4297845939609395484
+--- !u!114 &7617667598678253986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3482902784383453467}
+  m_GameObject: {fileID: 7081806988133829029}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 746bd9b69d1ba874c9dbe44a95df332a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0.24
---- !u!114 &4297845939609395485
+--- !u!114 &7617667598678253987
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3482902784383453467}
+  m_GameObject: {fileID: 7081806988133829029}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b811adcc5e7cd846bc11ee5b6ebb756, type: 3}
@@ -127,19 +128,52 @@ MonoBehaviour:
   YoungMat: {fileID: 2100000, guid: 16bd178161a31d645a1ab3ff0ac4b77a, type: 2}
   MatureMat: {fileID: 2100000, guid: 16bd178161a31d645a1ab3ff0ac4b77a, type: 2}
   grownMat: {fileID: 2100000, guid: 84efe9483cd2be14fa250772e2e97ea8, type: 2}
-  plantState: 0
-  which: 1
---- !u!114 &4297845939609395681
+  This_Plant:
+    plantspaceID: 0
+    Is_fertilize: 0
+    plantState: 0
+    which: 0
+--- !u!114 &7617667598678253919
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3482902784383453467}
+  m_GameObject: {fileID: 7081806988133829029}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43a75ddc965f0da459debb6c8cd60d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlantName: cabbageTest
-  PlantID: 0
+  fertilizeVfx_Spawnpoint: {fileID: 7617667599722308209}
+  vfx: {fileID: 0}
+--- !u!1 &7617667599722308209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7617667599722308210}
+  m_Layer: 0
+  m_Name: fertilizePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7617667599722308210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7617667599722308209}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.12, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7081806988133829033}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

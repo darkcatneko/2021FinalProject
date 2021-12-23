@@ -51,9 +51,13 @@ public class PlantPerform : MonoBehaviour
 
     public void TimePass()
     {
-        This_Plant.plantState++;
-        PlantUpdate();
-        Mathf.Clamp((int)This_Plant.plantState, 0, 3);
+        if (This_Plant.Is_fertilize == true)
+        {
+            This_Plant.plantState++;
+            PlantUpdate();
+            Mathf.Clamp((int)This_Plant.plantState, 0, 3);
+            This_Plant.Is_fertilize = false;
+        }        
     }
 
     public int GetPlantState()

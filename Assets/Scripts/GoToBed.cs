@@ -30,6 +30,7 @@ public class GoToBed : MonoBehaviour
         foreach (var item in Plants)
         {
             item.GetComponent<PlantPerform>().TimePass();
+            item.GetComponent<CabbageInteract>().Defertilize();
         }
     }
 }

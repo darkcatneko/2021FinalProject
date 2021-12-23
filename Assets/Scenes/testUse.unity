@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a75ddc965f0da459debb6c8cd60d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fertilizeVfx_Spawnpoint: {fileID: 0}
 --- !u!114 &111217612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1290,6 +1291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a75ddc965f0da459debb6c8cd60d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fertilizeVfx_Spawnpoint: {fileID: 0}
 --- !u!114 &1666467869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1783,5 +1785,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: cabbageTest
       objectReference: {fileID: 0}
+    - target: {fileID: 4297845939609395681, guid: f21aadeb38312894c9cd2ff497ba9ed0, type: 3}
+      propertyPath: fertilizeVfx_Spawnpoint
+      value: 
+      objectReference: {fileID: 1331341485}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f21aadeb38312894c9cd2ff497ba9ed0, type: 3}

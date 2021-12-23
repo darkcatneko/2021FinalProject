@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CabbageInteract : MonoBehaviour
 {
+    [SerializeField] GameObject fertilizeVfx_Spawnpoint;
+    public GameObject vfx;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -12,6 +14,7 @@ public class CabbageInteract : MonoBehaviour
             Debug.Log(other.name + "is in");
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -33,7 +36,7 @@ public class CabbageInteract : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Y)&& this.gameObject.GetComponent<PlantPerform>().GetPlantState() != 3)
             {
-                this.GetComponent<PlantPerform>().This_Plant.Is_fertilize = true;
+                Fertilize();    
             }
         }
     }
@@ -43,5 +46,16 @@ public class CabbageInteract : MonoBehaviour
         {
             Debug.Log(other.name + "is out");
         }
+    }
+
+    public void Fertilize()
+    {
+        this.GetComponent<PlantPerform>().This_Plant.Is_fertilize = true;
+        vfx = Instantiate(Resources.Load("Partical/PS_fertilize") as GameObject, fertilizeVfx_Spawnpoint.transform.position, Quaternion.identity);
+    }
+
+    public void Defertilize()
+    {
+        Destroy(vfx);
     }
 }
