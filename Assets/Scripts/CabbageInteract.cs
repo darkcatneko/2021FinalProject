@@ -20,12 +20,13 @@ public class CabbageInteract : MonoBehaviour
             {
                 Debug.Log("get a mature cabbage!");
                 GameObject[] emptyplace;
-                emptyplace = GameObject.FindGameObjectsWithTag("emptyfarm");
+                emptyplace = GameObject.FindGameObjectsWithTag("Emptyfarm");
                 for (int i = 0; i < emptyplace.Length; i++)
                 {
-                    if (emptyplace[i].GetComponent<EmptyFarmSpace>().thisfarmspace.FarmID==i)//抓取plantperform的class裡的id
+                    if (emptyplace[i].GetComponent<EmptyFarmSpace>().thisfarmspace.FarmID == this.GetComponent<PlantPerform>().This_Plant.plantspaceID)//抓取plantperform的class裡的id
                     {
-
+                        emptyplace[i].GetComponent<Collider>().enabled = true;
+                        emptyplace[i].GetComponent<EmptyFarmSpace>().thisfarmspace.PlantWhich = WhichPlant.EmptySpace;
                     }
                 }
                 Destroy(this.gameObject);

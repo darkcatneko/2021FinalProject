@@ -42,22 +42,22 @@ public class backpacktest : MonoBehaviour
     {
         Vector3 Playerpos = transform.position;
 
-        PlantState[] SavePlantState = GetPlantState();
+        //PlantState[] SavePlantState = GetPlantState();
 
-        PlayerSaveData playerSaveData = new PlayerSaveData(Playerpos, SavePlantState);
+        //PlayerSaveData playerSaveData = new PlayerSaveData(Playerpos, SavePlantState);
 
         //§âplayerSaveData ¦s¶ijson
     }
 
-    PlantState[] GetPlantState()
-    {
-        PlantState[] plantStates = new PlantState[PlantPerforms.Length];
+    //PlantState[] GetPlantState()
+    //{
+    //    //PlantState[] plantStates = new PlantState[PlantPerforms.Length];
 
-        for(int i = 0; i < plantStates.Length; i++)
-        {
-            plantStates[i] = PlantPerforms[i].plantState;
-        }
+    //    //for(int i = 0; i < plantStates.Length; i++)
+    //    //{
+    //    //    plantStates[i] = PlantPerforms[i].plantState;
+    //    //}
 
-        return plantStates;
-    }
+    //    //return plantStates;
+    //}
 }

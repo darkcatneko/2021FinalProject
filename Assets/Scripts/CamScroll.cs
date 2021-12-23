@@ -35,12 +35,12 @@ public class CamScroll : MonoBehaviour
 
     void setDistance()
     {       
-        if (Input.GetAxis("Mouse ScrollWheel")>0)
+        if (Input.GetAxis("Mouse ScrollWheel")<0)
         {
             sc += 0.1f;
             sc = Mathf.Clamp(sc, 1.2f, 2f);
         }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             sc -= 0.1f;
             sc = Mathf.Clamp(sc, 1.2f, 2f);

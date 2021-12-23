@@ -23,7 +23,10 @@ public class EmptyFarmSpace : MonoBehaviour
     public EmptyFarm thisfarmspace;
     public static bool InEmptyFarmRange;
 
-    public WhichPlant which = WhichPlant.EmptySpace;
+    private void Start()
+    {
+        
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -39,7 +42,8 @@ public class EmptyFarmSpace : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.O))//plant a cabbage
             {
-                       Instantiate(plantPrefab[0], this.transform.position, Quaternion.Euler(45f, 180f, 0));   
+                       GameObject planted_cabbage =  Instantiate(plantPrefab[0], this.transform.position, Quaternion.Euler(45f, 180f, 0));
+                       planted_cabbage.GetComponent<PlantPerform>().SetPlantIdentity(PlantState.seed, WhichPlant.cabbage, thisfarmspace.FarmID);
                        GameObject vfx = Instantiate(testVFX, this.transform.position, Quaternion.Euler(45f, 0, 0));
                        Destroy(vfx, 1f);
                        this.gameObject.GetComponent<Collider>().enabled = false;

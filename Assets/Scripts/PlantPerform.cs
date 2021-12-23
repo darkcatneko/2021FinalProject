@@ -19,12 +19,19 @@ public enum WhichPlant
     tomato,
     corn,
 }
-
+[System.Serializable]
 public class PlantIdentity
 {
+   public int plantspaceID;
    public PlantState plantState;
-    WhichPlant which;
-    //還需要建構PID
+   public WhichPlant which;
+   //還需要建構PID
+   public PlantIdentity(PlantState plant_state, WhichPlant _which,int id)
+    {
+        plantState = plant_state;
+        which = _which;
+        plantspaceID = id;
+    }
 }
 
 public class PlantPerform : MonoBehaviour
@@ -33,9 +40,8 @@ public class PlantPerform : MonoBehaviour
     public Material YoungMat;
     public Material MatureMat;
     public Material grownMat;
-    
-    public PlantState plantState = PlantState.seed;
-    public WhichPlant which;
+
+    public PlantIdentity This_Plant;
     void Update()
     {        
         
@@ -43,21 +49,21 @@ public class PlantPerform : MonoBehaviour
 
     public void TimePass()
     {
-        plantState++;
+        This_Plant.plantState++;
         PlantUpdate();
-        Mathf.Clamp((int)plantState, 0, 3);
+        Mathf.Clamp((int)This_Plant.plantState, 0, 3);
     }
 
     public int GetPlantState()
     {
         int state;
-        state = (int)plantState;
+        state = (int)This_Plant.plantState;
         return state;
     }
 
     void PlantUpdate()
     {
-        switch ((int)plantState)
+        switch ((int)This_Plant.plantState)
         {
             case 0:
                 this.gameObject.GetComponent<MeshRenderer>().material = SeedMat;
@@ -73,5 +79,9 @@ public class PlantPerform : MonoBehaviour
                 break;
 
         }
+    }
+    public void SetPlantIdentity(PlantState plant_state, WhichPlant _which,int id)
+    {
+        This_Plant = new PlantIdentity(plant_state, _which,id);
     }
 }
