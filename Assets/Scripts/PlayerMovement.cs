@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     public PlayerState playerState = PlayerState.FreeMove;
 
-    Vector3 movement;
+    public Vector3 movement;
     [SerializeField] GameObject FrontBody; SpriteRenderer[] FrontSP;
     [SerializeField] GameObject BackBody;
     Animator animate;

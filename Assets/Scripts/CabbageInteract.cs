@@ -19,7 +19,7 @@ public class CabbageInteract : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {            
-            if (Input.GetKeyDown(KeyCode.F) && this.gameObject.GetComponent<PlantPerform>().GetPlantState() == 3)//±Ä¦¬
+            if (Input.GetKeyDown(KeyCode.F) && this.gameObject.GetComponent<PlantPerform>().GetPlantState() == 3 && other.GetComponentInParent<PlayerMovement>().movement.z<0)//±Ä¦¬
             {
                 Debug.Log("get a mature cabbage!");
                 GameObject[] emptyplace;
@@ -36,6 +36,7 @@ public class CabbageInteract : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Y)&& this.gameObject.GetComponent<PlantPerform>().GetPlantState() != 3 && this.GetComponent<PlantPerform>().This_Plant.Is_fertilize == false)
             {
+                
                 Fertilize();    
             }
         }

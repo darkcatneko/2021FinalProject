@@ -40,7 +40,7 @@ public class EmptyFarmSpace : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (Input.GetKeyDown(KeyCode.O) && thisfarmspace.PlantWhich == WhichPlant.EmptySpace)//plant a cabbage
+            if (Input.GetKeyDown(KeyCode.O) && thisfarmspace.PlantWhich == WhichPlant.EmptySpace && other.GetComponentInParent<PlayerMovement>().movement.z < 0)//plant a cabbage
             {
                        other.GetComponentInParent<PlayerMovement>().IM_Planting();
                        thisfarmspace.PlantWhich = WhichPlant.cabbage;
