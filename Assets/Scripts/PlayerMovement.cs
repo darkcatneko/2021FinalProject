@@ -2,13 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerState
+{ 
+    FreeMove,
+    Planting,
+    Sleeping,
+    Brewing,
+    BackpackChoosing,
+    battling,
+}
 
 public class PlayerMovement : MonoBehaviour
 {
-
     public float moveSpeed;
     public bool m_FacingRight = true;
     public Rigidbody rb;
+
+    public PlayerState playerState = PlayerState.FreeMove;
 
     Vector3 movement;
     [SerializeField] GameObject FrontBody; SpriteRenderer[] FrontSP;
@@ -23,40 +33,50 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-       movement.x = Input.GetAxisRaw("Horizontal");
-       movement.z = Input.GetAxisRaw("Vertical");
-        if (movement.x > 0 && !m_FacingRight)
+       
+        if (playerState == PlayerState.FreeMove)
+        {   
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.z = Input.GetAxisRaw("Vertical");
+            if (movement.x > 0 && !m_FacingRight)
         {
             Flip();
         }
-        else if (movement.x < 0 && m_FacingRight)
+            else if (movement.x < 0 && m_FacingRight)
         {
             Flip();
         }
+        }
+        
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * Time.fixedDeltaTime*moveSpeed);
-        if (movement.z>0)
+        if (playerState == PlayerState.FreeMove)
         {
-            foreach (var item in FrontSP)
+            rb.MovePosition(rb.position + movement * Time.fixedDeltaTime * moveSpeed);
             {
-                item.enabled = false;
-            } 
-            BackBody.SetActive(true);
-        }
-        else
-        {
-            BackBody.SetActive(false); 
-            foreach (var item in FrontSP)
-            {
-                item.enabled = true;
+                if (movement.z > 0)
+                {
+                    foreach (var item in FrontSP)
+                    {
+                        item.enabled = false;
+                    }
+                    BackBody.SetActive(true);
+                }
+                else
+                {
+                    BackBody.SetActive(false);
+                    foreach (var item in FrontSP)
+                    {
+                        item.enabled = true;
+                    }
+                }
+                animate.SetFloat("Vertical", Mathf.Abs(movement.x));
+                animate.SetFloat("Horizontal", movement.z);
+                animate.SetFloat("Speed", movement.sqrMagnitude);
             }
         }
-        animate.SetFloat("Vertical", Mathf.Abs(movement.x));
-        animate.SetFloat("Horizontal", movement.z);
-        animate.SetFloat("Speed", movement.sqrMagnitude);
     }
     private void Flip()
     {
@@ -65,5 +85,15 @@ public class PlayerMovement : MonoBehaviour
         this.transform.localScale = new Vector3(scaleX, this.transform.localScale.y,this.transform.localScale.z);        
     }
 
-    
+    public void IM_Planting()
+    {
+        animate.SetBool("Planting",true);
+        playerState = PlayerState.Planting;
+        StartCoroutine(Delay.DelayToInvokeDo(() => 
+        {
+            playerState = PlayerState.FreeMove;
+            animate.SetBool("Planting", false);
+        }, 
+        2.6f));
+    }    
 }

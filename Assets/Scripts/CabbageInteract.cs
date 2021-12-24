@@ -34,7 +34,7 @@ public class CabbageInteract : MonoBehaviour
                 }
                 Destroy(this.gameObject);
             }
-            if (Input.GetKeyDown(KeyCode.Y)&& this.gameObject.GetComponent<PlantPerform>().GetPlantState() != 3)
+            if (Input.GetKeyDown(KeyCode.Y)&& this.gameObject.GetComponent<PlantPerform>().GetPlantState() != 3 && this.GetComponent<PlantPerform>().This_Plant.Is_fertilize == false)
             {
                 Fertilize();    
             }

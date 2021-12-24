@@ -26,7 +26,6 @@ public class PlantIdentity
    public bool Is_fertilize;
    public PlantState plantState;
    public WhichPlant which;
-   //還需要建構PID
    public PlantIdentity(PlantState plant_state, WhichPlant _which,int id,bool is_fertilize)
     {
         Is_fertilize = is_fertilize;
