@@ -5,14 +5,22 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+
+    public float moveSpeed;
     public bool m_FacingRight = true;
     public Rigidbody rb;
 
     Vector3 movement;
+    [SerializeField] GameObject FrontBody; SpriteRenderer[] FrontSP;
+    [SerializeField] GameObject BackBody;
+    Animator animate;
 
-   
-  
+    private void Start()
+    {
+        animate = FrontBody.GetComponent<Animator>();
+        FrontSP = FrontBody.GetComponentsInChildren<SpriteRenderer>();
+    }
+
     void Update()
     {
        movement.x = Input.GetAxisRaw("Horizontal");
@@ -21,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Flip();
         }
-
         else if (movement.x < 0 && m_FacingRight)
         {
             Flip();
@@ -30,7 +37,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);       
+        rb.MovePosition(rb.position + movement * Time.fixedDeltaTime*moveSpeed);
+        if (movement.z>0)
+        {
+            foreach (var item in FrontSP)
+            {
+                item.enabled = false;
+            } 
+            BackBody.SetActive(true);
+        }
+        else
+        {
+            BackBody.SetActive(false); 
+            foreach (var item in FrontSP)
+            {
+                item.enabled = true;
+            }
+        }
+        animate.SetFloat("Vertical", Mathf.Abs(movement.x));
+        animate.SetFloat("Horizontal", movement.z);
+        animate.SetFloat("Speed", movement.sqrMagnitude);
     }
     private void Flip()
     {
