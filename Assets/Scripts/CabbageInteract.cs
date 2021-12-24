@@ -19,7 +19,7 @@ public class CabbageInteract : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {            
-            if (Input.GetKeyDown(KeyCode.F) && this.gameObject.GetComponent<PlantPerform>().GetPlantState() == 3 && other.GetComponentInParent<PlayerMovement>().movement.z<0)//±Ä¦¬
+            if (Input.GetKeyDown(KeyCode.F) && this.gameObject.GetComponent<PlantPerform>().GetPlantState() == 3 && other.GetComponentInParent<PlayerMovement>().movement.z <= 0)//±Ä¦¬
             {
                 Debug.Log("get a mature cabbage!");
                 GameObject[] emptyplace;
