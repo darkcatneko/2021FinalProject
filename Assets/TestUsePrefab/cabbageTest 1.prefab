@@ -97,7 +97,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 19.21
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7617667598678253986
 MonoBehaviour:
@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fertilizeVfx_Spawnpoint: {fileID: 7617667599722308209}
+  Fertilize2D_VFX: {fileID: 2082941043004167837, guid: d095d7354312d89468a828d342351d14, type: 3}
   vfx: {fileID: 0}
 --- !u!1 &7617667599722308209
 GameObject:
