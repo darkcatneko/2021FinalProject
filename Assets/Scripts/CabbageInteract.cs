@@ -9,63 +9,77 @@ public class CabbageInteract : MonoBehaviour
     [SerializeField] GameObject Fertilize2D_VFX;
     [SerializeField] GameObject Harvest2D_VFX;
     public GameObject vfx;
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            //this.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
-            //this.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(0.1f, 0.1f, 0.1f, 0));            
-            Debug.Log(other.name + "is in");
-        }
-    }
 
-    private void OnTriggerStay(Collider other)
+    bool CanInteract;
+    Collider other;
+        
+    private void Start()
     {
-        if (other.gameObject.CompareTag("Player"))
+
+    }
+    private void OnTriggerEnter(Collider others)
+    {
+        if (others.gameObject.CompareTag("Player"))
         {
             InRange();
-            if (other.GetComponentInParent<PlayerMovement>().movement.z <= 0 && other.GetComponentInParent<PlayerMovement>().playerState == PlayerState.FreeMove)//確認可以執行其他動作
-            {
-                if (Input.GetKeyDown(KeyCode.F) && this.gameObject.GetComponent<PlantPerform>().GetPlantState() == 3)//採收
-                {
-                    Debug.Log("get a mature cabbage!");
-                    other.GetComponentInParent<PlayerMovement>().IM_Planting();
-
-                    StartCoroutine(Delay.DelayToInvokeDo(() =>
-                    {
-                        GameObject[] emptyplace;
-                        emptyplace = GameObject.FindGameObjectsWithTag("Emptyfarm");
-                        for (int i = 0; i < emptyplace.Length; i++)
-                        {
-                            if (emptyplace[i].GetComponent<EmptyFarmSpace>().thisfarmspace.FarmID == this.GetComponent<PlantPerform>().This_Plant.plantspaceID)//抓取plantperform的class裡的id
-                            {
-                                emptyplace[i].GetComponent<Collider>().enabled = true;
-                                emptyplace[i].GetComponent<EmptyFarmSpace>().thisfarmspace.PlantWhich = WhichPlant.EmptySpace;
-                            }
-                        }
-                        GameObject vfx = Instantiate(Harvest2D_VFX, this.transform.position + new Vector3(0, 0.11f, 0.1f), Quaternion.Euler(45f, 0, 0));
-                        Destroy(vfx, 1f);
-                        Destroy(this.gameObject);
-                    }
-                    , 1.5f));
-                    
-                }
-                if (Input.GetKeyDown(KeyCode.Y) && this.gameObject.GetComponent<PlantPerform>().GetPlantState() != 3 && this.GetComponent<PlantPerform>().This_Plant.Is_fertilize == false)
-                {
-                    Fertilize(other);
-                }
-            }
-            
+            other = others;
+            CanInteract = true;            
         }
     }
-    private void OnTriggerExit(Collider other)
+    private void Update()
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (CanInteract == true)
         {
-            this.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
-            this.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(0,0,0,0));
-            
-            Debug.Log(other.name + "is out");
+            if (other.gameObject.CompareTag("Player"))
+            {
+                InRange();
+                if (other.GetComponentInParent<PlayerMovement>().movement.z <= 0 && other.GetComponentInParent<PlayerMovement>().playerState == PlayerState.FreeMove)//確認可以執行其他動作
+                {
+                    if (Input.GetKeyDown(KeyCode.F) && this.gameObject.GetComponent<PlantPerform>().GetPlantState() == 3)//採收
+                    {
+                        Debug.Log("get a mature cabbage!");
+                        other.GetComponentInParent<PlayerMovement>().IM_Planting();
+
+                        StartCoroutine(Delay.DelayToInvokeDo(() =>
+                        {
+                            GameObject[] emptyplace;
+                            emptyplace = GameObject.FindGameObjectsWithTag("Emptyfarm");
+                            for (int i = 0; i < emptyplace.Length; i++)
+                            {
+                                if (emptyplace[i].GetComponent<EmptyFarmSpace>().thisfarmspace.FarmID == this.GetComponent<PlantPerform>().This_Plant.plantspaceID)//抓取plantperform的class裡的id
+                                {
+                                    emptyplace[i].GetComponent<Collider>().enabled = true;
+                                    emptyplace[i].GetComponent<EmptyFarmSpace>().thisfarmspace.PlantWhich = WhichPlant.EmptySpace;
+                                }
+                            }
+                            GameObject vfx = Instantiate(Harvest2D_VFX, this.transform.position + new Vector3(0, 0.11f, 0.1f), Quaternion.Euler(45f, 0, 0));
+                            Destroy(vfx, 1f);
+                            Destroy(this.gameObject);
+                        }
+                        , 1.5f));
+
+                    }
+                    if (Input.GetKeyDown(KeyCode.Y) && this.gameObject.GetComponent<PlantPerform>().GetPlantState() != 3 && this.GetComponent<PlantPerform>().This_Plant.Is_fertilize == false)
+                    {
+                        Fertilize(other);
+                    }
+                }
+
+            }
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        
+    }
+    private void OnTriggerExit(Collider others)
+    {
+        if (others.gameObject.CompareTag("Player"))
+        {
+            CanInteract = false;
+            other = null;
+            this.gameObject.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
+            this.gameObject.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(0,0,0,0));            
         }
     }
 
@@ -94,7 +108,7 @@ public class CabbageInteract : MonoBehaviour
 
     void InRange()
     {
-        this.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
-        this.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(0.1f, 0.1f, 0.1f, 0));
+       this.gameObject.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
+       this.gameObject.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(0.1f, 0.1f, 0.1f, 0));
     }
 }
