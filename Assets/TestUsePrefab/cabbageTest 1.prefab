@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fertilizeVfx_Spawnpoint: {fileID: 7617667599722308209}
   Fertilize2D_VFX: {fileID: 2082941043004167837, guid: d095d7354312d89468a828d342351d14, type: 3}
+  Harvest2D_VFX: {fileID: 5149853212314158152, guid: f6a3f2bd8793b4e4da380ddfc889b3ae, type: 3}
   vfx: {fileID: 0}
 --- !u!1 &7617667599722308209
 GameObject:
