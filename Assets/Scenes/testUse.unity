@@ -493,6 +493,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6231046072508558126, guid: 3455a92e65fba75439370aa6e4924ce6, type: 3}
+      propertyPath: testVFX
+      value: 
+      objectReference: {fileID: 5149853212314158152, guid: f6a3f2bd8793b4e4da380ddfc889b3ae, type: 3}
     - target: {fileID: 6231046072508558127, guid: 3455a92e65fba75439370aa6e4924ce6, type: 3}
       propertyPath: m_Name
       value: EmptyFarmSpace (1)
@@ -1810,7 +1814,7 @@ PrefabInstance:
     - target: {fileID: 6231046072508558126, guid: 3455a92e65fba75439370aa6e4924ce6, type: 3}
       propertyPath: testVFX
       value: 
-      objectReference: {fileID: 4813876964057856060, guid: c0860ae7473b03e4b8f3573dfa0a6e4e, type: 3}
+      objectReference: {fileID: 5149853212314158152, guid: f6a3f2bd8793b4e4da380ddfc889b3ae, type: 3}
     - target: {fileID: 6231046072508558127, guid: 3455a92e65fba75439370aa6e4924ce6, type: 3}
       propertyPath: m_Name
       value: EmptyFarmSpace

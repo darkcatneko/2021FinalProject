@@ -12,9 +12,8 @@ public class CabbageInteract : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            this.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
-            this.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(0.1f, 0.1f, 0.1f, 0));
-            //DynamicGI.UpdateEnvironment();
+            //this.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
+            //this.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(0.1f, 0.1f, 0.1f, 0));            
             Debug.Log(other.name + "is in");
         }
     }
@@ -23,7 +22,7 @@ public class CabbageInteract : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            
+            InRange();
             if (Input.GetKeyDown(KeyCode.F) && this.gameObject.GetComponent<PlantPerform>().GetPlantState() == 3 && other.GetComponentInParent<PlayerMovement>().movement.z <= 0)//±Ä¦¬
             {
                 Debug.Log("get a mature cabbage!");
@@ -39,10 +38,9 @@ public class CabbageInteract : MonoBehaviour
                 }
                 Destroy(this.gameObject);
             }
-            if (Input.GetKeyDown(KeyCode.Y)&& this.gameObject.GetComponent<PlantPerform>().GetPlantState() != 3 && this.GetComponent<PlantPerform>().This_Plant.Is_fertilize == false)
+            if (Input.GetKeyDown(KeyCode.Y)&& this.gameObject.GetComponent<PlantPerform>().GetPlantState() != 3 && this.GetComponent<PlantPerform>().This_Plant.Is_fertilize == false && other.GetComponentInParent<PlayerMovement>().movement.z <= 0 && other.GetComponentInParent<PlayerMovement>().playerState==PlayerState.FreeMove)
             {
-                
-                Fertilize();    
+                Fertilize(other);
             }
         }
     }
@@ -52,26 +50,37 @@ public class CabbageInteract : MonoBehaviour
         {
             this.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
             this.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(0,0,0,0));
-            //DynamicGI.UpdateEnvironment();
+            
             Debug.Log(other.name + "is out");
         }
     }
 
-    public void Fertilize()
+    public void Fertilize(Collider other)
     {
         this.GetComponent<PlantPerform>().This_Plant.Is_fertilize = true;
-        GameObject _vfx = Instantiate(Fertilize2D_VFX, transform.position + new Vector3(0, 0.3f, 0.2f),Quaternion.Euler(45,0,0));
-        Destroy(_vfx, 1.05f);
-        StartCoroutine(Delay.DelayToInvokeDo(() =>
+        other.GetComponentInParent<PlayerMovement>().IM_Fertilizing();
+        StartCoroutine(Delay.DelayToInvokeDo(() => 
         {
-            vfx = Instantiate(Resources.Load("Partical/PS_fertilize") as GameObject, fertilizeVfx_Spawnpoint.transform.position, Quaternion.identity);
-        }
-        , 0.8f));
+            GameObject _vfx = Instantiate(Fertilize2D_VFX, transform.position + new Vector3(0, 0.3f, 0.2f), Quaternion.Euler(45, 0, 0));
+            Destroy(_vfx, 1.05f);
+            StartCoroutine(Delay.DelayToInvokeDo(() =>
+            {
+                vfx = Instantiate(Resources.Load("Partical/PS_fertilize") as GameObject, fertilizeVfx_Spawnpoint.transform.position, Quaternion.identity);
+            }
+            , 0.8f));
+        }, 1.4f));
+        
         
     }
 
     public void Defertilize()
     {
         Destroy(vfx);
+    }
+
+    void InRange()
+    {
+        this.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
+        this.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(0.1f, 0.1f, 0.1f, 0));
     }
 }
