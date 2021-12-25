@@ -95,5 +95,16 @@ public class PlayerMovement : MonoBehaviour
             animate.SetBool("Planting", false);
         }, 
         2.6f));
-    }    
+    }
+    public void IM_Fertilizing()
+    {
+        animate.SetBool("Fertilizing", true);
+        playerState = PlayerState.Planting;
+        StartCoroutine(Delay.DelayToInvokeDo(() =>
+        {
+            playerState = PlayerState.FreeMove;
+            animate.SetBool("Fertilizing", false);
+        },
+        2.1f));
+    }
 }
