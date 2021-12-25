@@ -45,10 +45,10 @@ public class CabbageInteract : MonoBehaviour
                         }
                         GameObject vfx = Instantiate(Harvest2D_VFX, this.transform.position + new Vector3(0, 0.11f, 0.1f), Quaternion.Euler(45f, 0, 0));
                         Destroy(vfx, 1f);
-
+                        Destroy(this.gameObject);
                     }
                     , 1.5f));
-                    Destroy(this.gameObject);
+                    
                 }
                 if (Input.GetKeyDown(KeyCode.Y) && this.gameObject.GetComponent<PlantPerform>().GetPlantState() != 3 && this.GetComponent<PlantPerform>().This_Plant.Is_fertilize == false)
                 {
