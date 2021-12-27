@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class InGameTime : MonoBehaviour
 {
+    [SerializeField] GameObject Light;
     [SerializeField]
     private bool TimeToWake = false;
     [SerializeField]
@@ -44,6 +45,14 @@ public class InGameTime : MonoBehaviour
         PassSec = Mathf.Clamp(PassSec, 420 * 60, 1500 * 60);
         PassMin = PassSec / 60;
         PassMin = Mathf.Clamp(PassMin, 420, 1500);
+        if (PassMin>=900&&PassMin<=1020)
+        {
+            Light.GetComponent<EnviormentalLight>().UpdateLight();
+        }
+        else if (PassMin>1020&&PassMin<=1140)
+        {
+            Light.GetComponent<EnviormentalLight>().UpdateLightStrong();
+        }
         TimeTranslate();
         DisPlayTime();
     }
