@@ -10,6 +10,8 @@ public class CabbageInteract : MonoBehaviour
     [SerializeField] GameObject Harvest2D_VFX;
     public GameObject vfx;
 
+    [SerializeField] ItemObject The_seed_it_gen;
+
     bool CanInteract;
     Collider other;
         
@@ -38,8 +40,8 @@ public class CabbageInteract : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.F) && this.gameObject.GetComponent<PlantPerform>().GetPlantState() == 3)//採收
                     {
                         Debug.Log("get a mature cabbage!");
+                        
                         other.GetComponentInParent<PlayerMovement>().IM_Planting();
-
                         StartCoroutine(Delay.DelayToInvokeDo(() =>
                         {
                             GameObject[] emptyplace;
@@ -54,6 +56,8 @@ public class CabbageInteract : MonoBehaviour
                             }
                             GameObject vfx = Instantiate(Harvest2D_VFX, this.transform.position + new Vector3(0, 0.11f, 0.1f), Quaternion.Euler(45f, 0, 0));
                             Destroy(vfx, 1f);
+                            other.gameObject.GetComponentInParent<PlayerBackPack>().AddItemInBackPack(this.gameObject.GetComponent<Item>().item, 1);//進包包(完熟植物)
+                            other.gameObject.GetComponentInParent<PlayerBackPack>().AddItemInBackPack(The_seed_it_gen, Random.Range(1, 4));//種子回收
                             Destroy(this.gameObject);
                         }
                         , 1.5f));
@@ -67,10 +71,6 @@ public class CabbageInteract : MonoBehaviour
 
             }
         }
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        
     }
     private void OnTriggerExit(Collider others)
     {

@@ -133,8 +133,7 @@ public class InGameTime : MonoBehaviour
                 Start_A_New_Day(EnergyWaste);
                 if (EnergyWaste == 3)
                 {
-                    EnergyWaste = 0;
-                }
+                    EnergyWaste = 0;                }
                 TimeToWake = false;
             }    
         }
