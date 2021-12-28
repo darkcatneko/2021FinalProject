@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -978,6 +978,14 @@ PrefabInstance:
       propertyPath: testVFX
       value: 
       objectReference: {fileID: 5149853212314158152, guid: f6a3f2bd8793b4e4da380ddfc889b3ae, type: 3}
+    - target: {fileID: 6231046072508558126, guid: 3455a92e65fba75439370aa6e4924ce6, type: 3}
+      propertyPath: thisfarmspace.FarmID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231046072508558126, guid: 3455a92e65fba75439370aa6e4924ce6, type: 3}
+      propertyPath: PlantSaveFile.plantspaceID
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6231046072508558127, guid: 3455a92e65fba75439370aa6e4924ce6, type: 3}
       propertyPath: m_Name
       value: EmptyFarmSpace (1)
@@ -2210,7 +2218,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097325202}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.748, y: 0.339, z: -5.549}
+  m_LocalPosition: {x: -0.954, y: 0.339, z: -5.549}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 876098418}
@@ -2435,6 +2443,10 @@ PrefabInstance:
       propertyPath: testVFX
       value: 
       objectReference: {fileID: 5149853212314158152, guid: f6a3f2bd8793b4e4da380ddfc889b3ae, type: 3}
+    - target: {fileID: 6231046072508558126, guid: 3455a92e65fba75439370aa6e4924ce6, type: 3}
+      propertyPath: plantPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 7418948608812110900, guid: 476b15b76a9d9db429591e38005d35dd, type: 3}
     - target: {fileID: 6231046072508558127, guid: 3455a92e65fba75439370aa6e4924ce6, type: 3}
       propertyPath: m_Name
       value: EmptyFarmSpace

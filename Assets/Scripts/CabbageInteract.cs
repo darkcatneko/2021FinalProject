@@ -39,12 +39,10 @@ public class CabbageInteract : MonoBehaviour
                 {
                     if (Input.GetKeyDown(KeyCode.F) && this.gameObject.GetComponent<PlantPerform>().GetPlantState() == 3)//±Ä¦¬
                     {
-                        Debug.Log("get a mature cabbage!");
-                        
+                        Debug.Log("get a mature plant!");          
                         other.GetComponentInParent<PlayerMovement>().IM_Planting();
                         StartCoroutine(Delay.DelayToInvokeDo(() =>
-                        {
-                            
+                        {                            
                             GetSameEmptyFarm().GetComponent<Collider>().enabled = true;
                             GetSameEmptyFarm().GetComponent<EmptyFarmSpace>().thisfarmspace.PlantWhich = WhichPlant.EmptySpace;
                             GetSameEmptyFarm().GetComponent<EmptyFarmSpace>().PlantSaveFile = new PlantIdentity(PlantState.seed,WhichPlant.EmptySpace, this.GetComponent<PlantPerform>().This_Plant.plantspaceID, false);
