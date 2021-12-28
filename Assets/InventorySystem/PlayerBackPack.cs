@@ -13,4 +13,15 @@ public class PlayerBackPack : MonoBehaviour
     {
         inventory.Container.Clear();
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            inventory.Save();
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            inventory.Load();
+        }
+    }
 }
