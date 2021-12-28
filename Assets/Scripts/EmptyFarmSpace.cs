@@ -41,7 +41,7 @@ public class EmptyFarmSpace : MonoBehaviour
                     thisfarmspace.PlantWhich = WhichPlant.cabbage;
                     StartCoroutine(Delay.DelayToInvokeDo(() =>
                     {
-                        GameObject planted_cabbage = Instantiate(plantPrefab[0], this.transform.position, Quaternion.Euler(45f, 180f, 0));
+                        GameObject planted_cabbage = Instantiate(plantPrefab[0], this.transform.position, Quaternion.Euler(-45f, 180f, 0));
                         planted_cabbage.GetComponent<PlantPerform>().SetPlantIdentity(PlantState.seed, WhichPlant.cabbage, thisfarmspace.FarmID, false);
                         PlantSaveFile = planted_cabbage.GetComponent<PlantPerform>().This_Plant;
                         GameObject vfx = Instantiate(testVFX, this.transform.position + new Vector3(0, 0.11f, 0.1f), Quaternion.Euler(45f, 0, 0));
@@ -57,8 +57,23 @@ public class EmptyFarmSpace : MonoBehaviour
                     thisfarmspace.PlantWhich = WhichPlant.tomato;
                     StartCoroutine(Delay.DelayToInvokeDo(() =>
                     {
-                        GameObject planted_cabbage = Instantiate(plantPrefab[1], this.transform.position, Quaternion.Euler(45f, 180f, 0));
+                        GameObject planted_cabbage = Instantiate(plantPrefab[1], this.transform.position, Quaternion.Euler(-45f, 180f, 0));
                         planted_cabbage.GetComponent<PlantPerform>().SetPlantIdentity(PlantState.seed, WhichPlant.tomato, thisfarmspace.FarmID, false);
+                        PlantSaveFile = planted_cabbage.GetComponent<PlantPerform>().This_Plant;
+                        GameObject vfx = Instantiate(testVFX, this.transform.position + new Vector3(0, 0.11f, 0.1f), Quaternion.Euler(45f, 0, 0));
+                        Destroy(vfx, 1f);
+                        this.gameObject.GetComponent<Collider>().enabled = false;
+                    }
+                    , 1.5f));
+                }
+                if (Input.GetKeyDown(KeyCode.T) && thisfarmspace.PlantWhich == WhichPlant.EmptySpace && other.GetComponentInParent<PlayerMovement>().movement.z <= 0)//plant a cabbage
+                {
+                    other.GetComponentInParent<PlayerMovement>().IM_Planting();
+                    thisfarmspace.PlantWhich = WhichPlant.corn;
+                    StartCoroutine(Delay.DelayToInvokeDo(() =>
+                    {
+                        GameObject planted_cabbage = Instantiate(plantPrefab[2], this.transform.position, Quaternion.Euler(-45f, 180f, 0));
+                        planted_cabbage.GetComponent<PlantPerform>().SetPlantIdentity(PlantState.seed, WhichPlant.corn, thisfarmspace.FarmID, false);
                         PlantSaveFile = planted_cabbage.GetComponent<PlantPerform>().This_Plant;
                         GameObject vfx = Instantiate(testVFX, this.transform.position + new Vector3(0, 0.11f, 0.1f), Quaternion.Euler(45f, 0, 0));
                         Destroy(vfx, 1f);

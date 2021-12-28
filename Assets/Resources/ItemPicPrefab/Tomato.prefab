@@ -9,12 +9,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1349798934391500686, guid: 9b1ee45ef19d7404f8831c6b4ac9bac4, type: 3}
       propertyPath: m_Name
-      value: Seed_Pack_UI
+      value: Tomato
       objectReference: {fileID: 0}
     - target: {fileID: 7577659630055097968, guid: 9b1ee45ef19d7404f8831c6b4ac9bac4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 07b4606f83198374986c071e185c754b, type: 3}
+      objectReference: {fileID: 21300000, guid: 3fea7ebc7125be84cbfa3b322b391a63, type: 3}
     - target: {fileID: 8851489452530078792, guid: 9b1ee45ef19d7404f8831c6b4ac9bac4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

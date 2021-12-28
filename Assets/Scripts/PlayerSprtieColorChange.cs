@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerSprtieColorChange : MonoBehaviour
 {
     [SerializeField] GameObject System;
-     void Start()
+    public SpriteRenderer[] sprites;
+    private void Start()
     {
-        
+        sprites  = this.GetComponentsInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -16,10 +17,9 @@ public class PlayerSprtieColorChange : MonoBehaviour
         
     }
     public void PlayerColorChange()
-    {
-       SpriteRenderer[] sprites = this.GetComponentsInChildren<SpriteRenderer>();
+    {   
         foreach (var item in sprites)
-        {
+        {            
             item.color = new Color(1f-(1f-0.5f)/120*(System.GetComponent<InGameTime>().PassMin - 1020), 1f - (1f - 0.5f) / 120f * (System.GetComponent<InGameTime>().PassMin - 1020f), 1f - (1f - 0.5f) / 120f * (System.GetComponent<InGameTime>().PassMin - 1020f) );
         }
     }

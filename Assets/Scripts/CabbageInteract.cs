@@ -82,7 +82,7 @@ public class CabbageInteract : MonoBehaviour
         other.GetComponentInParent<PlayerMovement>().IM_Fertilizing();
         StartCoroutine(Delay.DelayToInvokeDo(() => 
         {
-            GameObject _vfx = Instantiate(Fertilize2D_VFX, transform.position + new Vector3(0, 0.3f, 0.2f), Quaternion.Euler(45, 0, 0));
+            GameObject _vfx = Instantiate(Fertilize2D_VFX, transform.position + new Vector3(0, 0.25f, 0.2f), Quaternion.Euler(45, 0, 0));
             Destroy(_vfx, 1.05f);
             StartCoroutine(Delay.DelayToInvokeDo(() =>
             {

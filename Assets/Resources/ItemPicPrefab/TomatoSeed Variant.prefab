@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 385475578843325998, guid: e7338b44055c54648aa3c638551021cc, type: 3}
       propertyPath: m_Name
-      value: TomatoSeed
+      value: TomatoSeed Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7869134106825350632, guid: e7338b44055c54648aa3c638551021cc, type: 3}
       propertyPath: m_Pivot.x
@@ -98,6 +98,6 @@ PrefabInstance:
     - target: {fileID: 9136475762961993680, guid: e7338b44055c54648aa3c638551021cc, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 80de5f7e20616f24c90f7389a6d7b788, type: 3}
+      objectReference: {fileID: 21300000, guid: 4a659837b44786a4bbf877328166faa4, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7338b44055c54648aa3c638551021cc, type: 3}
