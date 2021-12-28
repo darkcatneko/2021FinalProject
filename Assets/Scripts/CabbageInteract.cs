@@ -85,7 +85,7 @@ public class CabbageInteract : MonoBehaviour
 
     public void Fertilize(Collider other)
     {
-        this.GetComponent<PlantPerform>().This_Plant.Is_fertilize = true;
+        this.GetComponent<PlantPerform>().This_Plant.Is_fertilize = true;        
         other.GetComponentInParent<PlayerMovement>().IM_Fertilizing();
         StartCoroutine(Delay.DelayToInvokeDo(() => 
         {

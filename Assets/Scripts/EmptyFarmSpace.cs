@@ -21,6 +21,7 @@ public class EmptyFarmSpace : MonoBehaviour
     public GameObject[] plantPrefab;  
     public GameObject testVFX;
     public EmptyFarm thisfarmspace;
+    public PlantIdentity PlantSaveFile;
     public static bool InEmptyFarmRange;
 
     private void Start()
@@ -67,6 +68,12 @@ public class EmptyFarmSpace : MonoBehaviour
             Debug.Log(other.name + "is out");
         }
     }
+
+    public void PlantIdentityUpdate(PlantIdentity pid )
+    {
+        PlantSaveFile = pid;
+    }
+
     //funtion(id) 根據植物id生成植物
     
     
