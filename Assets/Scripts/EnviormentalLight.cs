@@ -22,6 +22,6 @@ public class EnviormentalLight : MonoBehaviour
     }
     public void UpdateLightStrong()
     {
-        this.GetComponent<Light>().intensity =(6f - (5f / 120f * (System.GetComponent<InGameTime>().PassMin - 1020f)));
+        this.GetComponent<Light>().intensity =(6f - (6f / 120f * (System.GetComponent<InGameTime>().PassMin - 1020f)));
     }
 }

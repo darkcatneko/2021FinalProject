@@ -44,16 +44,10 @@ public class CabbageInteract : MonoBehaviour
                         other.GetComponentInParent<PlayerMovement>().IM_Planting();
                         StartCoroutine(Delay.DelayToInvokeDo(() =>
                         {
-                            GameObject[] emptyplace;
-                            emptyplace = GameObject.FindGameObjectsWithTag("Emptyfarm");
-                            for (int i = 0; i < emptyplace.Length; i++)
-                            {
-                                if (emptyplace[i].GetComponent<EmptyFarmSpace>().thisfarmspace.FarmID == this.GetComponent<PlantPerform>().This_Plant.plantspaceID)//抓取plantperform的class裡的id
-                                {
-                                    emptyplace[i].GetComponent<Collider>().enabled = true;
-                                    emptyplace[i].GetComponent<EmptyFarmSpace>().thisfarmspace.PlantWhich = WhichPlant.EmptySpace;
-                                }
-                            }
+                            
+                            GetSameEmptyFarm().GetComponent<Collider>().enabled = true;
+                            GetSameEmptyFarm().GetComponent<EmptyFarmSpace>().thisfarmspace.PlantWhich = WhichPlant.EmptySpace;
+                            GetSameEmptyFarm().GetComponent<EmptyFarmSpace>().PlantSaveFile = new PlantIdentity(PlantState.seed,WhichPlant.EmptySpace, this.GetComponent<PlantPerform>().This_Plant.plantspaceID, false);
                             GameObject vfx = Instantiate(Harvest2D_VFX, this.transform.position + new Vector3(0, 0.11f, 0.1f), Quaternion.Euler(45f, 0, 0));
                             Destroy(vfx, 1f);
                             other.gameObject.GetComponentInParent<PlayerBackPack>().AddItemInBackPack(this.gameObject.GetComponent<Item>().item, 1);//進包包(完熟植物)
@@ -85,7 +79,8 @@ public class CabbageInteract : MonoBehaviour
 
     public void Fertilize(Collider other)
     {
-        this.GetComponent<PlantPerform>().This_Plant.Is_fertilize = true;        
+        this.GetComponent<PlantPerform>().This_Plant.Is_fertilize = true;
+        GetSameEmptyFarm().GetComponent<EmptyFarmSpace>().PlantIdentityUpdate(this.GetComponent<PlantPerform>().This_Plant);
         other.GetComponentInParent<PlayerMovement>().IM_Fertilizing();
         StartCoroutine(Delay.DelayToInvokeDo(() => 
         {
@@ -110,5 +105,19 @@ public class CabbageInteract : MonoBehaviour
     {
        this.gameObject.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
        this.gameObject.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(0.1f, 0.1f, 0.1f, 0));
+    }
+    public GameObject GetSameEmptyFarm()
+    {
+        GameObject correctfarm = null;
+        GameObject[] emptyplace;
+        emptyplace = GameObject.FindGameObjectsWithTag("Emptyfarm");
+        for (int i = 0; i < emptyplace.Length; i++)
+        {
+            if (emptyplace[i].GetComponent<EmptyFarmSpace>().thisfarmspace.FarmID == this.GetComponent<PlantPerform>().This_Plant.plantspaceID)//抓取plantperform的class裡的id
+            {
+                correctfarm = emptyplace[i];                               
+            }
+        }
+        return correctfarm ;
     }
 }
