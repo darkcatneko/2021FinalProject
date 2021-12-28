@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class InGameTime : MonoBehaviour
 {
+    [SerializeField] GameObject JR;
+    [SerializeField] GameObject JRBack;
     [SerializeField] GameObject Light;
     [SerializeField]
     private bool TimeToWake = false;
@@ -52,6 +54,8 @@ public class InGameTime : MonoBehaviour
         else if (PassMin>1020&&PassMin<=1140)
         {
             Light.GetComponent<EnviormentalLight>().UpdateLightStrong();
+            JR.GetComponent<PlayerSprtieColorChange>().PlayerColorChange();
+            JRBack.GetComponent<PlayerSprtieColorChange>().PlayerColorChange();
         }
         TimeTranslate();
         DisPlayTime();

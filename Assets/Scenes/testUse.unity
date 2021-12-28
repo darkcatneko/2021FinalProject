@@ -705,6 +705,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &145370520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145370517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad37408d34cf7d498eaf207bffbf8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  System: {fileID: 2083940754}
 --- !u!1001 &215742505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1835,6 +1848,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1797392739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797392737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad37408d34cf7d498eaf207bffbf8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  System: {fileID: 2083940754}
 --- !u!4 &1797392741 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6491483384274508255, guid: fa95f1f2cd83c5d4da8208ae77fdfc83, type: 3}
@@ -2092,6 +2118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc900add5a013414bb995d3553540511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  JR: {fileID: 1797392737}
+  JRBack: {fileID: 145370517}
   Light: {fileID: 1882141164}
   TimeToWake: 0
   gotobed: {fileID: 868849663}
