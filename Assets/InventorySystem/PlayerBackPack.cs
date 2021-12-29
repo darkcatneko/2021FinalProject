@@ -7,7 +7,7 @@ public class PlayerBackPack : MonoBehaviour
     public InventoryObject inventory;
     public void AddItemInBackPack(ItemObject item, int _amount)
     {
-        inventory.AddItem(item, _amount);
+        inventory.AddItem(new TrueItem(item), _amount);
     }
     private void OnApplicationQuit()
     {

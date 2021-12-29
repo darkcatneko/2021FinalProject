@@ -10,16 +10,17 @@ public class ItemDatabaseObject : ScriptableObject, ISerializationCallbackReceiv
     public Dictionary<int, ItemObject> GetItem = new Dictionary<int, ItemObject>();
     public void OnAfterDeserialize()
     {
-        GetId = new Dictionary<ItemObject, int>();
         for (int i = 0; i < Items.Length; i++)
         {
             GetId.Add(Items[i], i);
+            Items[i].Item_ID = i;
             GetItem.Add(i, Items[i]);
         }
     }
 
     public void OnBeforeSerialize()
     {
-        
+        GetId = new Dictionary<ItemObject, int>();
+        GetItem = new Dictionary<int, ItemObject>();
     }
 }

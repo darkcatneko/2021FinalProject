@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141d56cfce1f9994e8dc6ad2e42e5a0e, type: 3}
   m_Name: Corn
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6269013969364209531, guid: 1e1a6d49a63112b4b8b36f191aa8511f, type: 3}
-  type: 1
+  sprite: {fileID: 21300000, guid: 021200e1e43e7974c8cdd791502205cc, type: 3}
+  type: 2
   Item_ID: 4
   description: a

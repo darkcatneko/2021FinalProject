@@ -10,19 +10,20 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
     public string savePath;
     public ItemDatabaseObject database;
     public List<InventorySlot> Container = new List<InventorySlot>();
-    public void AddItem(ItemObject _item,int _amount)
+    public void AddItem(TrueItem _item,int _amount)
     {
         
         for (int i = 0; i < Container.Count; i++)
         {
-            if (Container[i].item == _item)
+            if (Container[i].item.Id == _item.Id)
             {
                 Container[i].AddAmount(_amount);
                 return;               
             }
         }
-        Container.Add(new InventorySlot(database.GetId[_item],_item, _amount));        
+        Container.Add(new InventorySlot(_item.Id,_item, _amount));        
     }
+    [ContextMenu("Save")]
     public void Save()
     {
         string saveData = JsonUtility.ToJson(this, true);
@@ -31,6 +32,7 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
         bf.Serialize(file, saveData);
         file.Close();
     }
+    [ContextMenu("Load")]
     public void Load()
     {
         if (File.Exists(string.Concat(Application.persistentDataPath, savePath)))
@@ -42,12 +44,16 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
             file.Close();
         }
     }
-
+    [ContextMenu("Clear")]
+    public void Clear()
+    {
+        Container = new List<InventorySlot>();
+    }
     public void OnAfterDeserialize()
     {
         for (int i = 0; i < Container.Count; i++)
         {
-            Container[i].item = database.GetItem[Container[i].ID];
+            Container[i].item =new TrueItem(database.GetItem[Container[i].ID]);
         }
     }
 
@@ -60,9 +66,9 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
 public class InventorySlot
 {
     public int ID;
-    public ItemObject item;
+    public TrueItem item;
     public int amount;
-    public InventorySlot(int _id, ItemObject _item, int _amount)
+    public InventorySlot(int _id, TrueItem _item, int _amount)
     {
         ID = _id;
         item = _item;

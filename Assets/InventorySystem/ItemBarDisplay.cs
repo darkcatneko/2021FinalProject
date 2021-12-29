@@ -62,7 +62,7 @@ public class ItemBarDisplay : MonoBehaviour
             else
             {
                 var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity, transform);
-                obj.GetComponent<Image>().sprite = inventory.Container[i].item.sprite;
+                obj.GetComponent<Image>().sprite = inventory.database.GetItem[inventory.Container[i].item.Id].sprite;
                 obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
                 obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
                 itemsDisplayed.Add(inventory.Container[i], obj);
@@ -74,7 +74,7 @@ public class ItemBarDisplay : MonoBehaviour
         for (int i = 0; i < Mathf.Clamp(inventory.Container.Count, 0, NUMBER_OF_COLUMN); i++)
         {
             var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity, transform);
-            obj.GetComponent<Image>().sprite = inventory.Container[i].item.sprite;
+            obj.GetComponent<Image>().sprite = inventory.database.GetItem[inventory.Container[i].item.Id].sprite;
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
             obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
         }
@@ -85,6 +85,9 @@ public class ItemBarDisplay : MonoBehaviour
     }
     public void OnLoad()
     {
-        items = inventory.Container[0];
+        if (inventory.Container[0]!=null)
+        {
+            items = inventory.Container[0];
+        }        
     }
 }

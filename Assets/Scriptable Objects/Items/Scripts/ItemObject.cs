@@ -16,3 +16,16 @@ public abstract class ItemObject : ScriptableObject
     [TextArea(15,20)]
     public string description;
 }
+[System.Serializable]
+public class TrueItem
+{
+    public string Name;
+    public int Id;
+    public ItemType type;
+    public TrueItem(ItemObject _item)
+    {
+        Name = _item.name;
+        type = _item.type;
+        Id = _item.Item_ID;
+    }
+}

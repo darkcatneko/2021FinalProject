@@ -81,9 +81,9 @@ public class EmptyFarmSpace : MonoBehaviour
                 //    }
                 //    , 1.5f));
                 //}
-                if (Input.GetKeyDown(KeyCode.O) && thisfarmspace.PlantWhich == WhichPlant.EmptySpace && other.GetComponentInParent<PlayerMovement>().movement.z <= 0 && ItemBarDisplay.instance.items.item.type==ItemType.Seed)//plant a cabbage
+                if (Input.GetKeyDown(KeyCode.O) && thisfarmspace.PlantWhich == WhichPlant.EmptySpace && other.GetComponentInParent<PlayerMovement>().movement.z <= 0 && ItemBarDisplay.instance.items.item.type==ItemType.Seed&&ItemBarDisplay.instance.items!=null)//plant a cabbage
                 {
-                    switch(ItemBarDisplay.instance.items.item.Item_ID)
+                    switch(ItemBarDisplay.instance.items.item.Id)
                     {
                         case 1:
                             InstantiatePlant(WhichPlant.cabbage,0);
