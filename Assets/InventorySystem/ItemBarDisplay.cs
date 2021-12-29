@@ -23,8 +23,7 @@ public class ItemBarDisplay : MonoBehaviour
     }
     void Start()
     {
-        CreateDisplay();
-        items = inventory.Container[0];  
+        CreateDisplay();        
     }
 
     // Update is called once per frame
@@ -35,18 +34,24 @@ public class ItemBarDisplay : MonoBehaviour
         {
             MainToolNum--;
             MainToolNum = Mathf.Clamp(MainToolNum, 0, 5);
-            items = inventory.Container[MainToolNum];
+            if (inventory.Container[MainToolNum] != null)
+            {
+                items = inventory.Container[MainToolNum];
+            }
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
             MainToolNum++;
             MainToolNum = Mathf.Clamp(MainToolNum, 0, 5);
-            items = inventory.Container[MainToolNum];
+            if (inventory.Container[MainToolNum]!=null)
+            {
+                items = inventory.Container[MainToolNum];
+            }
         }
     }
     public void UpdateDisplay()
     {
-        for (int i = 0; i < NUMBER_OF_COLUMN; i++)
+        for (int i = 0; i < Mathf.Clamp(inventory.Container.Count,0,NUMBER_OF_COLUMN); i++)
         {
             if (itemsDisplayed.ContainsKey(inventory.Container[i]))
             {
@@ -63,7 +68,7 @@ public class ItemBarDisplay : MonoBehaviour
     }
     public void CreateDisplay()
     {
-        for (int i = 0; i < NUMBER_OF_COLUMN; i++)
+        for (int i = 0; i < Mathf.Clamp(inventory.Container.Count, 0, NUMBER_OF_COLUMN); i++)
         {
             var obj = Instantiate(inventory.Container[i].item.prefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
@@ -73,5 +78,9 @@ public class ItemBarDisplay : MonoBehaviour
     public Vector3 GetPosition(int i)
     {
         return new Vector3(X_START + (X_SPACE_BETWEEN_ITEM * (i % NUMBER_OF_COLUMN)), Y_START + ((-Y_SAPCE_BETWEEN_ITEM) * (i / NUMBER_OF_COLUMN)));
+    }
+    public void OnLoad()
+    {
+        items = inventory.Container[0];
     }
 }
