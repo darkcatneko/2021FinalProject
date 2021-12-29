@@ -5,6 +5,7 @@ using UnityEngine;
 public enum ItemType
 {
     Potion,
+    Seed,
     Default
 }
 public abstract class ItemObject : ScriptableObject
