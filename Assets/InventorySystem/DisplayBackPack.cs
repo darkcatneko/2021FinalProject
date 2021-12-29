@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class DisplayBackPack : MonoBehaviour
 {
+    public GameObject InventoryPrefab;
     public InventoryObject inventory;
     public int X_START;
     public int Y_START;
@@ -32,7 +34,8 @@ public class DisplayBackPack : MonoBehaviour
             }
             else
             {
-                var obj = Instantiate(inventory.Container[i].item.prefab, Vector3.zero, Quaternion.identity, transform);
+                var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity, transform);
+                obj.GetComponent<Image>().sprite = inventory.Container[i].item.sprite;
                 obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
                 obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
                 itemsDisplayed.Add(inventory.Container[i], obj);
@@ -43,7 +46,8 @@ public class DisplayBackPack : MonoBehaviour
     {
         for (int i = 0; i < inventory.Container.Count; i++)
         {
-            var obj = Instantiate(inventory.Container[i].item.prefab, Vector3.zero, Quaternion.identity, transform);
+            var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity, transform);
+            obj.GetComponent<Image>().sprite = inventory.Container[i].item.sprite;
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
             obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
         }

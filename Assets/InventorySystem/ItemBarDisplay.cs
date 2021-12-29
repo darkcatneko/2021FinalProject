@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ItemBarDisplay : MonoBehaviour
 {
+    public GameObject InventoryPrefab;
     public InventoryObject inventory;
     public int X_START;
     public int Y_START;
@@ -59,7 +61,8 @@ public class ItemBarDisplay : MonoBehaviour
             }
             else
             {
-                var obj = Instantiate(inventory.Container[i].item.prefab, Vector3.zero, Quaternion.identity, transform);
+                var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity, transform);
+                obj.GetComponent<Image>().sprite = inventory.Container[i].item.sprite;
                 obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
                 obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
                 itemsDisplayed.Add(inventory.Container[i], obj);
@@ -70,7 +73,8 @@ public class ItemBarDisplay : MonoBehaviour
     {
         for (int i = 0; i < Mathf.Clamp(inventory.Container.Count, 0, NUMBER_OF_COLUMN); i++)
         {
-            var obj = Instantiate(inventory.Container[i].item.prefab, Vector3.zero, Quaternion.identity, transform);
+            var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity, transform);
+            obj.GetComponent<Image>().sprite = inventory.Container[i].item.sprite;
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
             obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
         }
