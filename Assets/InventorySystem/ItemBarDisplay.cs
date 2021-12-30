@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ItemBarDisplay : MonoBehaviour
 {
+    public GameObject Focus;
     public GameObject InventoryPrefab;
     public InventoryObject inventory;
     public int X_START;
@@ -32,24 +33,29 @@ public class ItemBarDisplay : MonoBehaviour
     void Update()
     {
         UpdateDisplay();
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (inventory.Container.Count>0)
         {
-            MainToolNum--;
-            MainToolNum = Mathf.Clamp(MainToolNum, 0, 5);
-            if (inventory.Container[MainToolNum] != null)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                items = inventory.Container[MainToolNum];
+                MainToolNum--;
+                MainToolNum = Mathf.Clamp(MainToolNum, 0, Mathf.Clamp(inventory.Container.Count-1, 0, 5));
+                Debug.Log(MainToolNum);
+                if (inventory.Container[MainToolNum] != null)
+                {
+                    items = inventory.Container[MainToolNum];
+                    Focus.GetComponent<RectTransform>().position = GetPosition(MainToolNum);
+                }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            MainToolNum++;
-            MainToolNum = Mathf.Clamp(MainToolNum, 0, 5);
-            if (inventory.Container[MainToolNum]!=null)
+            if (Input.GetKeyDown(KeyCode.E))
             {
+                MainToolNum++;
+                MainToolNum = Mathf.Clamp(MainToolNum, 0, Mathf.Clamp(inventory.Container.Count-1, 0, 5));
+                Debug.Log(MainToolNum);
                 items = inventory.Container[MainToolNum];
+                Focus.GetComponent<RectTransform>().position = GetPosition(MainToolNum);
+
             }
-        }
+        }        
     }
     public void UpdateDisplay()
     {
@@ -71,7 +77,7 @@ public class ItemBarDisplay : MonoBehaviour
     }
     public void CreateDisplay()
     {
-        for (int i = 0; i < Mathf.Clamp(inventory.Container.Count, 0, NUMBER_OF_COLUMN); i++)
+        for (int i = 0; i < Mathf.Clamp(inventory.Container.Count, 0,NUMBER_OF_COLUMN); i++)
         {
             var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<Image>().sprite = inventory.database.GetItem[inventory.Container[i].item.Id].sprite;
