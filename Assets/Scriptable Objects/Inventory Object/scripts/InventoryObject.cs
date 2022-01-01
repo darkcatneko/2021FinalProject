@@ -12,7 +12,11 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
     public List<InventorySlot> Container = new List<InventorySlot>();
     public void AddItem(TrueItem _item,int _amount)
     {
-        
+        if (_item.buffs.Length>0)
+        {
+            Container.Add(new InventorySlot(_item.Id, _item, _amount));
+            return;
+        }
         for (int i = 0; i < Container.Count; i++)
         {
             if (Container[i].item.Id == _item.Id)

@@ -43,7 +43,7 @@ public class ItemBarDisplay : MonoBehaviour
                 if (inventory.Container[MainToolNum] != null)
                 {
                     items = inventory.Container[MainToolNum];
-                    Focus.GetComponent<RectTransform>().position = GetPosition(MainToolNum);
+                    Focus.GetComponent<RectTransform>().localPosition = GetPosition(MainToolNum);
                 }
             }
             if (Input.GetKeyDown(KeyCode.E))
@@ -52,7 +52,7 @@ public class ItemBarDisplay : MonoBehaviour
                 MainToolNum = Mathf.Clamp(MainToolNum, 0, Mathf.Clamp(inventory.Container.Count-1, 0, 5));
                 Debug.Log(MainToolNum);
                 items = inventory.Container[MainToolNum];
-                Focus.GetComponent<RectTransform>().position = GetPosition(MainToolNum);
+                Focus.GetComponent<RectTransform>().localPosition = GetPosition(MainToolNum);
 
             }
         }        
