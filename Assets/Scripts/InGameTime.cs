@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class InGameTime : MonoBehaviour
 {
+    [SerializeField] GameObject CanvasOne;
     [SerializeField] GameObject JR;
     [SerializeField] GameObject JRBack;
     [SerializeField] GameObject Light;
@@ -146,6 +147,9 @@ public class InGameTime : MonoBehaviour
                 gotobed.AllPlantGrow();
                 Start_A_New_Day(0);
                 TimeToWake = false;
+                //change the UI
+                // push the wake up button
+                // change stat
             }
             else
             {
@@ -155,7 +159,11 @@ public class InGameTime : MonoBehaviour
                 {
                     EnergyWaste = 0;                }
                 TimeToWake = false;
-            }    
+                //change the UI
+                // push the wake up button
+                // change stat
+            }
         }
     }
+
 }

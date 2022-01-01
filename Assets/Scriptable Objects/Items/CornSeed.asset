@@ -16,3 +16,4 @@ MonoBehaviour:
   type: 1
   Item_ID: 5
   description: a
+  buffs: []

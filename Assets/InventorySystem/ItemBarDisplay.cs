@@ -91,7 +91,7 @@ public class ItemBarDisplay : MonoBehaviour
     }
     public void OnLoad()
     {
-        if (inventory.Container[0]!=null)
+        if (inventory.Container.Count>0)
         {
             items = inventory.Container[0];
         }        
