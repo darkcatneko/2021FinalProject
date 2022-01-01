@@ -201,15 +201,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6496080785228578786, guid: c31f23182d0199447b0e6a4c1669128c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.169
+      value: 1.327
       objectReference: {fileID: 0}
     - target: {fileID: 6496080785228578786, guid: c31f23182d0199447b0e6a4c1669128c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23537377
+      value: 0.079
       objectReference: {fileID: 0}
     - target: {fileID: 6496080785228578786, guid: c31f23182d0199447b0e6a4c1669128c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.233
+      value: -8.649
       objectReference: {fileID: 0}
     - target: {fileID: 6496080785228578786, guid: c31f23182d0199447b0e6a4c1669128c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2353,7 +2353,7 @@ GameObject:
   - component: {fileID: 1599007446}
   - component: {fileID: 1599007445}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: ItemBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2405,6 +2405,7 @@ MonoBehaviour:
       Name: 
       Id: 0
       type: 0
+      buffs: []
     amount: 0
 --- !u!114 &1599007446
 MonoBehaviour:
@@ -2722,7 +2723,7 @@ GameObject:
   - component: {fileID: 1929318977}
   - component: {fileID: 1929318976}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CanvasLayer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2787,7 +2788,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1929318979
 RectTransform:
@@ -2962,7 +2963,7 @@ GameObject:
   - component: {fileID: 2052171523}
   - component: {fileID: 2052171522}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Focus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3369,7 +3370,7 @@ GameObject:
   - component: {fileID: 6976303604579705119}
   - component: {fileID: 6976303604579705112}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MainUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3508,7 +3509,7 @@ GameObject:
   - component: {fileID: 6976303604990441180}
   - component: {fileID: 6976303604990441170}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: BackPack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

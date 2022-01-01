@@ -107,4 +107,8 @@ public class PlayerMovement : MonoBehaviour
         },
         2.1f));
     }
+    public void IM_Sleeping ()
+    {
+        playerState = PlayerState.Sleeping;
+    }
 }

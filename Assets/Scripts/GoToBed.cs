@@ -4,13 +4,31 @@ using UnityEngine;
 
 public class GoToBed : MonoBehaviour
 {
-    private void OnTriggerStay(Collider other)
+    bool Incollider;
+    Collider player;    
+    public InventoryObject playerInventory;
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (Input.GetKeyDown(KeyCode.G))
+            Incollider = true;
+            player = other;
+            playerInventory = player.GetComponentInParent<PlayerBackPack>().inventory;
+        }
+    }
+    private void Update()
+    {
+        if (Incollider == true)
+        {
+            if (Input.GetKeyDown(KeyCode.U))
             {
-                AllPlantGrow();
+                InGameTime.instance.TimeForBed();//stop the clock 
+                player.GetComponentInParent<PlayerMovement>().IM_Sleeping();
+                playerInventory.Save();
+                //play the animation
+                //change the UI
+                // push the wake up button
+                // change stat
             }
         }
     }
@@ -18,7 +36,9 @@ public class GoToBed : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log(other.name + "is out");
+            Incollider = false;
+            player = null;
+            playerInventory = null;
         }
     }
 

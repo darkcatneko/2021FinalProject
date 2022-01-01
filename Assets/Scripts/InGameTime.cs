@@ -27,6 +27,13 @@ public class InGameTime : MonoBehaviour
     public int GameDay;
 
     public int EnergyWaste;
+
+    public static InGameTime instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         Start_A_New_Day(0);
@@ -34,10 +41,10 @@ public class InGameTime : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            TimeForBed();
-        }
+        //if (Input.GetKeyDown(KeyCode.U))
+        //{
+        //    TimeForBed();
+        //}
         
     }
 
