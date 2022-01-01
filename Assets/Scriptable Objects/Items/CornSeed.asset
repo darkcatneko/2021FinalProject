@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 141d56cfce1f9994e8dc6ad2e42e5a0e, type: 3}
+  m_Script: {fileID: 11500000, guid: 59c407a3b4836e043926e465f41f13fb, type: 3}
   m_Name: CornSeed
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 91b8b3c81a5cff24eba6795f3a877fca, type: 3}
+  sprite: {fileID: 21300000, guid: 1e3cf26c236457342b1a4caec7b8b336, type: 3}
   type: 1
   Item_ID: 5
   description: a

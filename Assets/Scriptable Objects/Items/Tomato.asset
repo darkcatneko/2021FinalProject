@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141d56cfce1f9994e8dc6ad2e42e5a0e, type: 3}
   m_Name: Tomato
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 3fea7ebc7125be84cbfa3b322b391a63, type: 3}
+  sprite: {fileID: 21300000, guid: a706dbe6c7ab58e409593145f7e5bc45, type: 3}
   type: 2
   Item_ID: 2
   description: c
+  buffs: []
