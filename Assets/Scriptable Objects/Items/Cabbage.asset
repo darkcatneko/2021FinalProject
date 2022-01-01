@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141d56cfce1f9994e8dc6ad2e42e5a0e, type: 3}
   m_Name: Cabbage
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: fa3f71e2bb8c4834c926f47924561725, type: 3}
+  sprite: {fileID: 21300000, guid: b3280d161b0ce2341851098a18f572c2, type: 3}
   type: 2
   Item_ID: 0
   description: a
