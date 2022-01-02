@@ -18,9 +18,11 @@ public class EmptyFarm
 
 public class EmptyFarmSpace : MonoBehaviour
 {
+    public AudioClip PlantSF;
+    AudioSource audioSource;
     public GameObject[] plantPrefab;  
     public GameObject testVFX;
-   
+    public GameObject Sign;
     public PlantIdentity PlantSaveFile;
     bool InEmptyFarmRange;
     Collider other;
@@ -35,7 +37,7 @@ public class EmptyFarmSpace : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Player") && ItemBarDisplay.instance.items.item != null)
             {
-                if (Input.GetKeyDown(KeyCode.O) && PlantSaveFile.which == WhichPlant.EmptySpace && other.GetComponentInParent<PlayerMovement>().movement.z <= 0 && ItemBarDisplay.instance.items.item.type==ItemType.Seed&&ItemBarDisplay.instance.items!=null)//plant a cabbage
+                if (Input.GetKeyDown(KeyCode.F) && PlantSaveFile.which == WhichPlant.EmptySpace && other.GetComponentInParent<PlayerMovement>().movement.z <= 0 && ItemBarDisplay.instance.items.item.type==ItemType.Seed&&ItemBarDisplay.instance.items!=null)//plant a cabbage
                 {
                     switch(ItemBarDisplay.instance.items.item.Id)
                     {
@@ -63,6 +65,7 @@ public class EmptyFarmSpace : MonoBehaviour
         {
             InEmptyFarmRange = true;
             other = others;
+            Sign.SetActive(true);
         }
     }    
     private void OnTriggerExit(Collider others)
@@ -70,7 +73,9 @@ public class EmptyFarmSpace : MonoBehaviour
         if (others.gameObject.CompareTag("Player"))
         {
             InEmptyFarmRange = false;
-            other = null;           
+            other = null;
+            Sign.GetComponentInChildren<Animator>().SetBool("Out", true);
+            StartCoroutine(Delay.DelayToInvokeDo(() => { Sign.GetComponentInChildren<Animator>().SetBool("Out", false); Sign.SetActive(false); }, 0.5f));
         }
     }
 
@@ -99,11 +104,15 @@ public class EmptyFarmSpace : MonoBehaviour
         PlantSaveFile.which = _whichplant;
         StartCoroutine(Delay.DelayToInvokeDo(() =>
         {
+            audioSource = GameObject.FindGameObjectWithTag("system").GetComponent<AudioSource>();
+            audioSource.PlayOneShot(PlantSF, 0.5f * GameObject.FindGameObjectWithTag("system").GetComponent<BGM_Center>().volume);
             GameObject planted_cabbage = Instantiate(plantPrefab[PlantNum], this.transform.position, Quaternion.Euler(-45f, 180f, 0));
             planted_cabbage.GetComponent<PlantPerform>().SetPlantIdentity(state, _whichplant, PlantSaveFile.plantspaceID, isfertilize);
             PlantSaveFile = planted_cabbage.GetComponent<PlantPerform>().This_Plant;
             GameObject vfx = Instantiate(testVFX, this.transform.position + new Vector3(0, 0.11f, 0.1f), Quaternion.Euler(45f, 0, 0));
             Destroy(vfx, 1f);
+            Sign.GetComponentInChildren<Animator>().SetBool("Out", true);
+            StartCoroutine(Delay.DelayToInvokeDo(() => { Sign.GetComponentInChildren<Animator>().SetBool("Out", false); Sign.SetActive(false); }, 0.5f));
             this.gameObject.GetComponent<Collider>().enabled = false;
             if (isfertilize == true)
             {

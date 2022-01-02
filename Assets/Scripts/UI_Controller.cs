@@ -79,8 +79,15 @@ public class UI_Controller : MonoBehaviour
         else if(InGameTime.instance.PassMin > 1020 && InGameTime.instance.PassMin < 1140)
         {
             DayCycleUI.GetComponent<Image>().sprite = DayCircle[1];
+
         }
         else if (InGameTime.instance.PassMin == 1140)
+        {
+            DayCycleUI.GetComponent<Image>().sprite = DayCircle[2];
+            StartCoroutine(Delay.DelayToInvokeDo(() => { DayCycleUI.GetComponent<Image>().sprite = DayCircle[2]; }, 0.5f));
+            StartCoroutine(Delay.DelayToInvokeDo(() => { this.GetComponent<Animator>().enabled = false; }, 1f));
+        }
+        else if (InGameTime.instance.PassMin > 1140)
         {
             DayCycleUI.GetComponent<Image>().sprite = DayCircle[2];
         }

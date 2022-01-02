@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class GoToBed : MonoBehaviour
 {
+    public AudioClip MorningSF;
+    public AudioClip NightSF;
+    AudioSource audioSource;
+    public GameObject Sign;
     public GameObject CanvasLayer1;
     bool Incollider;
     Collider player;    
@@ -17,17 +21,19 @@ public class GoToBed : MonoBehaviour
             Incollider = true;
             player = other;
             playerInventory = player.GetComponentInParent<PlayerBackPack>().inventory;
+            Sign.SetActive(true);
         }
     }
     private void Update()
     {
         if (Incollider == true)
         {
-            if (Input.GetKeyDown(KeyCode.U))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 InGameTime.instance.TimeForBed();//stop the clock 
                 player.GetComponentInParent<PlayerMovement>().IM_Sleeping();
-
+                audioSource = GameObject.FindGameObjectWithTag("system").GetComponent<AudioSource>();
+                audioSource.PlayOneShot(NightSF, 1f * GameObject.FindGameObjectWithTag("system").GetComponent<BGM_Center>().volume);
             }
         }
     }
@@ -38,6 +44,8 @@ public class GoToBed : MonoBehaviour
             Incollider = false;
             player = null;
             playerInventory = null;
+            Sign.GetComponentInChildren<Animator>().SetBool("Out",true);
+            StartCoroutine(Delay.DelayToInvokeDo(() => { Sign.GetComponentInChildren<Animator>().SetBool("Out", false); Sign.SetActive(false); }, 0.5f));
         }
     }
 
@@ -60,6 +68,8 @@ public class GoToBed : MonoBehaviour
     public void WakeUpButtonVer2()
     {
         Debug.Log("bruh");
+        audioSource = GameObject.FindGameObjectWithTag("system").GetComponent<AudioSource>();
+        audioSource.PlayOneShot(MorningSF, 0.1f * GameObject.FindGameObjectWithTag("system").GetComponent<BGM_Center>().volume);
         InGameTime.instance.WakeUpButton();
         wakePart2();
         InGameTime.instance.TimeSave(playerInventory.TimeData);//¦s®É¶¡
