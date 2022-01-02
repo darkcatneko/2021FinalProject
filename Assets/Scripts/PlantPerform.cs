@@ -56,6 +56,7 @@ public class PlantPerform : MonoBehaviour
             PlantUpdate();
             Mathf.Clamp((int)This_Plant.plantState, 0, 3);
             This_Plant.Is_fertilize = false;
+            this.GetComponent<CabbageInteract>().GetSameEmptyFarm().GetComponent<EmptyFarmSpace>().PlantIdentityUpdate(This_Plant);
         }        
     }
 
@@ -66,7 +67,7 @@ public class PlantPerform : MonoBehaviour
         return state;
     }
 
-    void PlantUpdate()
+    public void PlantUpdate()
     {
         switch ((int)This_Plant.plantState)
         {

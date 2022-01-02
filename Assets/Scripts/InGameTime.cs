@@ -3,12 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class GameTimeData
+{
+   public int GAMEDAY;
+   public int ENERGYWASTE;
+    public  GameTimeData(int _day,int energy)
+    {
+        GAMEDAY = _day;
+        ENERGYWASTE = energy;
+    }
+}
 public class InGameTime : MonoBehaviour
 {
+    public InventoryObject data;
+    [SerializeField] GameObject JR;
+    [SerializeField] GameObject JRBack;
+    [SerializeField] GameObject Light;
     [SerializeField]
     private bool TimeToWake = false;
     [SerializeField]
     private GoToBed gotobed;
+
+    public GameObject CanvasLayer1;
+    public GameObject gameText;
 
     public Text text;
     public int PassSec = 420 * 60;
@@ -23,19 +41,24 @@ public class InGameTime : MonoBehaviour
 
     public int GameDay;
 
-    public int EnergyWaste;
+    public int EnergyWaste;    
+
+    public static InGameTime instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
-        Start_A_New_Day(0);
+        data.Load();
+        TimeLoad(data.TimeData);
+        Start_A_New_Day(GameDay,EnergyWaste,0);
     }
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            TimeForBed();
-        }
-        
+
     }
 
     void PlusGameTime()
@@ -44,6 +67,16 @@ public class InGameTime : MonoBehaviour
         PassSec = Mathf.Clamp(PassSec, 420 * 60, 1500 * 60);
         PassMin = PassSec / 60;
         PassMin = Mathf.Clamp(PassMin, 420, 1500);
+        if (PassMin>=900&&PassMin<=1020)
+        {
+            Light.GetComponent<EnviormentalLight>().UpdateLight();
+        }
+        else if (PassMin>1020&&PassMin<=1140)
+        {
+            Light.GetComponent<EnviormentalLight>().UpdateLightStrong();
+            JR.GetComponent<PlayerSprtieColorChange>().PlayerColorChange();
+            JRBack.GetComponent<PlayerSprtieColorChange>().PlayerColorChange();
+        }
         TimeTranslate();
         DisPlayTime();
     }
@@ -51,20 +84,24 @@ public class InGameTime : MonoBehaviour
     {
         if (Min < 10 && Hour != 25)
         {
-            text.text = (Hour + " : 0" + Min + " : " + Sec);
+            text.text = (Hour + ":0" + Min);
         }
         else if (Hour == 25)
         {
-            text.text = ("1" + " : 0" + Min + " : " + Sec);
+            text.text = ("1" + ":0" + Min);
         }
         else
         {
-            text.text = (Hour +" : "+ Min + " : "+Sec);
+            text.text = (Hour +":"+ Min);
         }        
     }
-    public void Start_A_New_Day(int EnergyWaste)
+    public void Start_A_New_Day(int gameday,int EnergyWaste,int dayPassed)
     {
-        GameDay++;        
+        GameDay = gameday+dayPassed;
+        if (instance.GameDay == 1)
+        {
+            JR.GetComponentInParent<PlayerBackPack>().AddStarterItem();
+        }
         PassSec = 420 * 60 + EnergyWaste * 7200;
         PassMin = PassSec / 60;
         PassMin = Mathf.Clamp(PassMin, 420, 1500);
@@ -76,7 +113,9 @@ public class InGameTime : MonoBehaviour
     {
         CancelInvoke();
         Debug.Log("TimeForBed");
-        TimeToWake = true;                   
+        TimeToWake = true;
+        CanvasLayer1.SetActive(true);
+        gameText.GetComponent<Text>().text = InGameTime.instance.GameDay.ToString() + " >> " + (InGameTime.instance.GameDay + 1).ToString();
     }
     void ToTired()
     {
@@ -124,19 +163,34 @@ public class InGameTime : MonoBehaviour
             {
                 EnergyWaste = 0;
                 gotobed.AllPlantGrow();
-                Start_A_New_Day(0);
+                Start_A_New_Day(GameDay,0,1);
                 TimeToWake = false;
+                Light.GetComponent<EnviormentalLight>().ResetLight();
+                JR.GetComponent<PlayerSprtieColorChange>().PlayerColorReset();
+                JRBack.GetComponent<PlayerSprtieColorChange>().PlayerColorReset();
             }
             else
             {
                 gotobed.AllPlantGrow();
-                Start_A_New_Day(EnergyWaste);
+                Start_A_New_Day(GameDay,EnergyWaste,1);
                 if (EnergyWaste == 3)
                 {
-                    EnergyWaste = 0;
-                }
+                    EnergyWaste = 0;                }
                 TimeToWake = false;
-            }    
+                Light.GetComponent<EnviormentalLight>().ResetLight();
+                JR.GetComponent<PlayerSprtieColorChange>().PlayerColorReset();
+                JRBack.GetComponent<PlayerSprtieColorChange>().PlayerColorReset();
+            }
         }
+    }
+    public void TimeSave(GameTimeData _data)
+    {
+        _data.GAMEDAY = GameDay;
+        _data.ENERGYWASTE = EnergyWaste;
+    }
+    public void TimeLoad(GameTimeData _data)
+    {
+        GameDay = _data.GAMEDAY;
+        EnergyWaste = _data.ENERGYWASTE;
     }
 }

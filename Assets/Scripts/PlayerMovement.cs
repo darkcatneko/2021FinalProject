@@ -107,4 +107,31 @@ public class PlayerMovement : MonoBehaviour
         },
         2.1f));
     }
+    public void IM_Sleeping ()
+    {
+        playerState = PlayerState.Sleeping;
+    }
+    public void setAnimate ()
+    {
+        if (movement.z > 0)
+        {
+            foreach (var item in FrontSP)
+            {
+                item.enabled = false;
+            }
+            BackBody.SetActive(true);
+        }
+        else
+        {
+            BackBody.SetActive(false);
+            foreach (var item in FrontSP)
+            {
+                item.enabled = true;
+            }
+        }
+        animate.SetFloat("Vertical", Mathf.Abs(movement.x));
+        animate.SetFloat("Horizontal", movement.z);
+        animate.SetFloat("Speed", movement.sqrMagnitude);
+    }
+
 }
