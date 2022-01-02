@@ -13,9 +13,32 @@ MonoBehaviour:
   m_Name: Player Inventory
   m_EditorClassIdentifier: 
   savePath: /Inventory.Save
-  data: {fileID: 11400000, guid: 602dc459d10502943a76d52b4f62f51a, type: 2}
   TimeData:
     GAMEDAY: 1
     ENERGYWASTE: 0
-  emptyfarmData: []
+  emptyfarmData:
+  - plantspaceID: 0
+    Is_fertilize: 0
+    plantState: 0
+    which: 0
+  - plantspaceID: 1
+    Is_fertilize: 0
+    plantState: 0
+    which: 0
+  - plantspaceID: 2
+    Is_fertilize: 0
+    plantState: 0
+    which: 0
+  - plantspaceID: 3
+    Is_fertilize: 0
+    plantState: 0
+    which: 0
+  - plantspaceID: 4
+    Is_fertilize: 0
+    plantState: 0
+    which: 0
+  - plantspaceID: 5
+    Is_fertilize: 0
+    plantState: 0
+    which: 0
   Container: []

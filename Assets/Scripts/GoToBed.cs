@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class GoToBed : MonoBehaviour
 {
+    public GameObject CanvasLayer1;
     bool Incollider;
     Collider player;    
     public InventoryObject playerInventory;
-    public GameObject CanvasLayer1;
-    public GameObject gameText;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -27,8 +27,7 @@ public class GoToBed : MonoBehaviour
             {
                 InGameTime.instance.TimeForBed();//stop the clock 
                 player.GetComponentInParent<PlayerMovement>().IM_Sleeping();
-                CanvasLayer1.SetActive(true);
-                gameText.GetComponent<Text>().text = InGameTime.instance.GameDay.ToString() + " >> " + (InGameTime.instance.GameDay + 1).ToString();
+
             }
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerBackPack : MonoBehaviour
 {
     public InventoryObject inventory;
-
+    public ItemObject[] starterPack;
     private void Awake()
     {        
     }
@@ -15,8 +15,7 @@ public class PlayerBackPack : MonoBehaviour
         inventory.EmptyFarmLoad();
     }
     public void AddItemInBackPack(ItemObject item, int _amount)
-    {
-        
+    {        
         inventory.AddItem(new TrueItem(item), _amount);
         ItemBarDisplay.instance.OnLoad();
     }
@@ -34,6 +33,19 @@ public class PlayerBackPack : MonoBehaviour
         {
             inventory.Load();
             inventory.EmptyFarmLoad();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            inventory.Clear();
+            AddStarterItem();
+            inventory.SaveEmpty();
+        }
+    }
+    public void AddStarterItem()
+    {
+        for (int i = 0; i < starterPack.Length; i++)
+        {
+            AddItemInBackPack(starterPack[i], 1);
         }
     }
 }

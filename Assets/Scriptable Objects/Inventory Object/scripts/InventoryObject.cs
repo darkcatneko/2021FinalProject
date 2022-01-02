@@ -9,7 +9,6 @@ using UnityEditor;
 public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
 {
     public string savePath;
-    [SerializeField]
     private ItemDatabaseObject data;
     public GameTimeData TimeData;
     public List<PlantIdentity> emptyfarmData = new List<PlantIdentity>();
@@ -106,9 +105,25 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
     {
         Container = new List<InventorySlot>();
         emptyfarmData = new List<PlantIdentity>();
+        GameObject[] EmptyFarms;
+        EmptyFarms = GameObject.FindGameObjectsWithTag("Emptyfarm");
+        for (int i = 0; i < EmptyFarms.Length; i++)
+        {
+            emptyfarmData.Add(new PlantIdentity(PlantState.seed, WhichPlant.EmptySpace, i, false));
+        }
         TimeData.GAMEDAY = 1;
         TimeData.ENERGYWASTE = 0;
     }
+    [ContextMenu("SaveEmpty")]
+    public void SaveEmpty()
+    {
+        string saveData = JsonUtility.ToJson(this, true);
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(string.Concat(Application.persistentDataPath, savePath));
+        bf.Serialize(file, saveData);
+        file.Close();
+    }
+
     public void OnAfterDeserialize()
     {
         for (int i = 0; i < Container.Count; i++)

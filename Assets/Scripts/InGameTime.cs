@@ -25,6 +25,9 @@ public class InGameTime : MonoBehaviour
     [SerializeField]
     private GoToBed gotobed;
 
+    public GameObject CanvasLayer1;
+    public GameObject gameText;
+
     public Text text;
     public int PassSec = 420 * 60;
     public int PassMin;
@@ -50,7 +53,7 @@ public class InGameTime : MonoBehaviour
     {
         data.Load();
         TimeLoad(data.TimeData);
-        Start_A_New_Day(GameDay,EnergyWaste,0);           
+        Start_A_New_Day(GameDay,EnergyWaste,0);
     }
     
     void Update()
@@ -81,20 +84,24 @@ public class InGameTime : MonoBehaviour
     {
         if (Min < 10 && Hour != 25)
         {
-            text.text = (Hour + " : 0" + Min + " : " + Sec);
+            text.text = (Hour + ":0" + Min);
         }
         else if (Hour == 25)
         {
-            text.text = ("1" + " : 0" + Min + " : " + Sec);
+            text.text = ("1" + ":0" + Min);
         }
         else
         {
-            text.text = (Hour +" : "+ Min + " : "+Sec);
+            text.text = (Hour +":"+ Min);
         }        
     }
     public void Start_A_New_Day(int gameday,int EnergyWaste,int dayPassed)
     {
-        GameDay = gameday+dayPassed;        
+        GameDay = gameday+dayPassed;
+        if (instance.GameDay == 1)
+        {
+            JR.GetComponentInParent<PlayerBackPack>().AddStarterItem();
+        }
         PassSec = 420 * 60 + EnergyWaste * 7200;
         PassMin = PassSec / 60;
         PassMin = Mathf.Clamp(PassMin, 420, 1500);
@@ -106,7 +113,9 @@ public class InGameTime : MonoBehaviour
     {
         CancelInvoke();
         Debug.Log("TimeForBed");
-        TimeToWake = true;                   
+        TimeToWake = true;
+        CanvasLayer1.SetActive(true);
+        gameText.GetComponent<Text>().text = InGameTime.instance.GameDay.ToString() + " >> " + (InGameTime.instance.GameDay + 1).ToString();
     }
     void ToTired()
     {
