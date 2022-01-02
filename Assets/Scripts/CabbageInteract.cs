@@ -44,7 +44,6 @@ public class CabbageInteract : MonoBehaviour
                         StartCoroutine(Delay.DelayToInvokeDo(() =>
                         {                            
                             GetSameEmptyFarm().GetComponent<Collider>().enabled = true;
-                            GetSameEmptyFarm().GetComponent<EmptyFarmSpace>().thisfarmspace.PlantWhich = WhichPlant.EmptySpace;
                             GetSameEmptyFarm().GetComponent<EmptyFarmSpace>().PlantSaveFile = new PlantIdentity(PlantState.seed,WhichPlant.EmptySpace, this.GetComponent<PlantPerform>().This_Plant.plantspaceID, false);
                             GameObject vfx = Instantiate(Harvest2D_VFX, this.transform.position + new Vector3(0, 0.11f, 0.1f), Quaternion.Euler(45f, 0, 0));
                             Destroy(vfx, 1f);
@@ -86,7 +85,7 @@ public class CabbageInteract : MonoBehaviour
             Destroy(_vfx, 1.05f);
             StartCoroutine(Delay.DelayToInvokeDo(() =>
             {
-                vfx = Instantiate(Resources.Load("Partical/PS_fertilize") as GameObject, fertilizeVfx_Spawnpoint.transform.position, Quaternion.identity);
+                FertilizePartical();
             }
             , 0.8f));
         }, 1.4f));
@@ -111,11 +110,15 @@ public class CabbageInteract : MonoBehaviour
         emptyplace = GameObject.FindGameObjectsWithTag("Emptyfarm");
         for (int i = 0; i < emptyplace.Length; i++)
         {
-            if (emptyplace[i].GetComponent<EmptyFarmSpace>().thisfarmspace.FarmID == this.GetComponent<PlantPerform>().This_Plant.plantspaceID)//抓取plantperform的class裡的id
+            if (emptyplace[i].GetComponent<EmptyFarmSpace>().PlantSaveFile.plantspaceID == this.GetComponent<PlantPerform>().This_Plant.plantspaceID)//抓取plantperform的class裡的id
             {
                 correctfarm = emptyplace[i];                               
             }
         }
         return correctfarm ;
+    }
+    public void FertilizePartical()
+    {
+        vfx = Instantiate(Resources.Load("Partical/PS_fertilize") as GameObject, fertilizeVfx_Spawnpoint.transform.position, Quaternion.identity);
     }
 }

@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: Player Inventory
   m_EditorClassIdentifier: 
   savePath: /Inventory.Save
-  database: {fileID: 11400000, guid: 602dc459d10502943a76d52b4f62f51a, type: 2}
+  data: {fileID: 11400000, guid: 602dc459d10502943a76d52b4f62f51a, type: 2}
+  TimeData:
+    GAMEDAY: 1
+    ENERGYWASTE: 0
+  emptyfarmData: []
   Container: []

@@ -67,7 +67,7 @@ public class PlantPerform : MonoBehaviour
         return state;
     }
 
-    void PlantUpdate()
+    public void PlantUpdate()
     {
         switch ((int)This_Plant.plantState)
         {

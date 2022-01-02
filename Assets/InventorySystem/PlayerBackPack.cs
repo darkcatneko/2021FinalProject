@@ -12,6 +12,7 @@ public class PlayerBackPack : MonoBehaviour
     private void Start()
     {
         inventory.Load();
+        inventory.EmptyFarmLoad();
     }
     public void AddItemInBackPack(ItemObject item, int _amount)
     {
@@ -20,10 +21,8 @@ public class PlayerBackPack : MonoBehaviour
         ItemBarDisplay.instance.OnLoad();
     }
     private void OnApplicationQuit()
-    {
-        inventory.Container.Clear();
-        inventory.TimeData.GAMEDAY = 1;
-        inventory.TimeData.ENERGYWASTE = 0;
+    { 
+        inventory.Clear();
     }
     private void Update()
     {
@@ -34,6 +33,7 @@ public class PlayerBackPack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N))
         {
             inventory.Load();
+            inventory.EmptyFarmLoad();
         }
     }
 }

@@ -35,7 +35,7 @@ public class DisplayBackPack : MonoBehaviour
             else
             {
                 var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity, transform);
-                obj.GetComponent<Image>().sprite = inventory.database.GetItem[inventory.Container[i].item.Id].sprite;
+                obj.GetComponent<Image>().sprite = inventory.GetItem(inventory.Container[i].item.Id).sprite;
                 obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
                 obj.GetComponentInChildren<Text>().text = inventory.Container[i].amount.ToString("n0");
                 itemsDisplayed.Add(inventory.Container[i], obj);
@@ -47,7 +47,7 @@ public class DisplayBackPack : MonoBehaviour
         for (int i = 0; i < inventory.Container.Count; i++)
         {
             var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity, transform);
-            obj.GetComponent<Image>().sprite = inventory.database.GetItem[inventory.Container[i].item.Id].sprite;
+            obj.GetComponent<Image>().sprite = inventory.GetItem(inventory.Container[i].item.Id).sprite;
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
             obj.GetComponentInChildren<Text>().text = inventory.Container[i].amount.ToString("n0");
         }
