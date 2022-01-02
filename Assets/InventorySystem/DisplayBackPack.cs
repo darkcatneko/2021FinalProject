@@ -16,7 +16,7 @@ public class DisplayBackPack : MonoBehaviour
     Dictionary<InventorySlot, GameObject> itemsDisplayed = new Dictionary<InventorySlot, GameObject>();
     void Start()
     {
-        CreateDisplay();
+        //CreateDisplay();
     }
 
     // Update is called once per frame

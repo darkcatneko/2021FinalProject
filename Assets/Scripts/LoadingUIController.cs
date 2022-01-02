@@ -2,30 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
-public class PlayerBackPack : MonoBehaviour
+public class LoadingUIController : MonoBehaviour
 {
+    [SerializeField] GameObject Havefile;[SerializeField] GameObject DontHaveFile;
+    [SerializeField]
     public InventoryObject inventory;
     public ItemObject[] starterPack;
-    private void Awake()
-    {        
-    }
+    [SerializeField] string savePath;
     private void Start()
     {
-        inventory.Load();
-        inventory.EmptyFarmLoad();
+        
     }
     public void AddItemInBackPack(ItemObject item, int _amount)
-    {        
+    {
         inventory.AddItem(new TrueItem(item), _amount);
-        ItemBarDisplay.instance.OnLoad();
     }
     private void OnApplicationQuit()
-    { 
+    {
         inventory.Clear();
     }
     private void Update()
     {
+        if (File.Exists(string.Concat(Application.persistentDataPath, savePath)))
+        {
+            Havefile.SetActive(true);
+            DontHaveFile.SetActive(false);
+        }
+        else
+        {
+            Havefile.SetActive(false);
+            DontHaveFile.SetActive(true);
+        }
         if (Input.GetKeyDown(KeyCode.M))
         {
             InGameTime.instance.TimeSave(inventory.TimeData);//¦s®É¶¡
@@ -49,5 +59,20 @@ public class PlayerBackPack : MonoBehaviour
         {
             AddItemInBackPack(starterPack[i], 1);
         }
+    }
+    public void NewSaveButton()
+    {
+        inventory.Clear();
+        AddStarterItem();
+        inventory.SaveEmpty();
+        SceneManager.LoadScene(1);
+    }
+    public void PlayButton()
+    {
+        SceneManager.LoadScene(1);
+    }
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

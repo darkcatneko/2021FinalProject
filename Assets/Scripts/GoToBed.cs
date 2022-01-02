@@ -67,8 +67,6 @@ public class GoToBed : MonoBehaviour
         StartCoroutine(Delay.DelayToInvokeDo(() => 
         {
             player.GetComponentInParent<PlayerMovement>().playerState = PlayerState.FreeMove;
-            playerInventory.Load();
-            InGameTime.instance.TimeLoad(playerInventory.TimeData);
             CanvasLayer1.SetActive(false);
         }
         , 2.5f));

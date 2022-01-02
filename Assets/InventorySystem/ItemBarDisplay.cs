@@ -26,7 +26,7 @@ public class ItemBarDisplay : MonoBehaviour
     }
     void Start()
     {
-        CreateDisplay();        
+        //CreateDisplay();        
     }
 
     // Update is called once per frame
