@@ -30,14 +30,14 @@ public class DisplayBackPack : MonoBehaviour
         {
             if (itemsDisplayed.ContainsKey(inventory.Container[i]))
             {
-                itemsDisplayed[inventory.Container[i]].GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
+                itemsDisplayed[inventory.Container[i]].GetComponentInChildren<Text>().text = inventory.Container[i].amount.ToString("n0");
             }
             else
             {
                 var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity, transform);
                 obj.GetComponent<Image>().sprite = inventory.database.GetItem[inventory.Container[i].item.Id].sprite;
                 obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
-                obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
+                obj.GetComponentInChildren<Text>().text = inventory.Container[i].amount.ToString("n0");
                 itemsDisplayed.Add(inventory.Container[i], obj);
             }
         }
@@ -49,7 +49,7 @@ public class DisplayBackPack : MonoBehaviour
             var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<Image>().sprite = inventory.database.GetItem[inventory.Container[i].item.Id].sprite;
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
-            obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
+            obj.GetComponentInChildren<Text>().text = inventory.Container[i].amount.ToString("n0");
         }
     }
     public Vector3 GetPosition(int i)

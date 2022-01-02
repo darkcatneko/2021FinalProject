@@ -24,4 +24,8 @@ public class EnviormentalLight : MonoBehaviour
     {
         this.GetComponent<Light>().intensity =(6f - (6f / 120f * (System.GetComponent<InGameTime>().PassMin - 1020f)));
     }
+    public void ResetLight()
+    {
+        this.GetComponent<Light>().intensity = 6;
+    }
 }

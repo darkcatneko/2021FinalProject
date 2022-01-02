@@ -27,7 +27,6 @@ public class GoToBed : MonoBehaviour
             {
                 InGameTime.instance.TimeForBed();//stop the clock 
                 player.GetComponentInParent<PlayerMovement>().IM_Sleeping();
-                playerInventory.Save();
                 CanvasLayer1.SetActive(true);
                 gameText.GetComponent<Text>().text = InGameTime.instance.GameDay.ToString() + " >> " + (InGameTime.instance.GameDay + 1).ToString();
             }
@@ -64,10 +63,13 @@ public class GoToBed : MonoBehaviour
         Debug.Log("bruh");
         InGameTime.instance.WakeUpButton();
         wakePart2();
+        InGameTime.instance.TimeSave(playerInventory.TimeData);//¦s®É¶¡
+        playerInventory.Save();
         StartCoroutine(Delay.DelayToInvokeDo(() => 
         {
             player.GetComponentInParent<PlayerMovement>().playerState = PlayerState.FreeMove;
             playerInventory.Load();
+            InGameTime.instance.TimeLoad(playerInventory.TimeData);
             CanvasLayer1.SetActive(false);
         }
         , 2.5f));

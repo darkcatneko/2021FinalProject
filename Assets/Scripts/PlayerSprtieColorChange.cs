@@ -23,4 +23,11 @@ public class PlayerSprtieColorChange : MonoBehaviour
             item.color = new Color(1f-(1f-0.5f)/120*(System.GetComponent<InGameTime>().PassMin - 1020), 1f - (1f - 0.5f) / 120f * (System.GetComponent<InGameTime>().PassMin - 1020f), 1f - (1f - 0.5f) / 120f * (System.GetComponent<InGameTime>().PassMin - 1020f) );
         }
     }
+    public void PlayerColorReset()
+    {
+        foreach (var item in sprites)
+        {
+            item.color = new Color(1, 1, 1);
+        }
+    }
 }

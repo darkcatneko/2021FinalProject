@@ -5,6 +5,14 @@ using UnityEngine;
 public class PlayerBackPack : MonoBehaviour
 {
     public InventoryObject inventory;
+
+    private void Awake()
+    {        
+    }
+    private void Start()
+    {
+        inventory.Load();
+    }
     public void AddItemInBackPack(ItemObject item, int _amount)
     {
         
@@ -14,6 +22,8 @@ public class PlayerBackPack : MonoBehaviour
     private void OnApplicationQuit()
     {
         inventory.Container.Clear();
+        inventory.TimeData.GAMEDAY = 1;
+        inventory.TimeData.ENERGYWASTE = 0;
     }
     private void Update()
     {

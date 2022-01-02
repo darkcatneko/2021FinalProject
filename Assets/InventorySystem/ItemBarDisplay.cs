@@ -22,7 +22,7 @@ public class ItemBarDisplay : MonoBehaviour
     public static ItemBarDisplay instance;
     private void Awake()
     {
-        instance = this;
+        instance = this;        
     }
     void Start()
     {
@@ -63,14 +63,14 @@ public class ItemBarDisplay : MonoBehaviour
         {
             if (itemsDisplayed.ContainsKey(inventory.Container[i]))
             {
-                itemsDisplayed[inventory.Container[i]].GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
+                itemsDisplayed[inventory.Container[i]].GetComponentInChildren<Text>().text = inventory.Container[i].amount.ToString("n0");
             }
             else
             {
                 var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity, transform);
                 obj.GetComponent<Image>().sprite = inventory.database.GetItem[inventory.Container[i].item.Id].sprite;
                 obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
-                obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
+                obj.GetComponentInChildren<Text>().text = inventory.Container[i].amount.ToString("n0");
                 itemsDisplayed.Add(inventory.Container[i], obj);
             }
         }
@@ -82,7 +82,7 @@ public class ItemBarDisplay : MonoBehaviour
             var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<Image>().sprite = inventory.database.GetItem[inventory.Container[i].item.Id].sprite;
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
-            obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
+            obj.GetComponentInChildren<Text>().text = inventory.Container[i].amount.ToString("n0");
         }
     }
     public Vector3 GetPosition(int i)

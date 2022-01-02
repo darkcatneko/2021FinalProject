@@ -9,7 +9,11 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
 {
     public string savePath;
     public ItemDatabaseObject database;
+    public GameTimeData TimeData;
+    public List<EmptyFarm> emptyfarmData = new List<EmptyFarm>();
     public List<InventorySlot> Container = new List<InventorySlot>();
+
+
     public void AddItem(TrueItem _item,int _amount)
     {
         if (_item.buffs.Length>0)
@@ -52,6 +56,8 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
     public void Clear()
     {
         Container = new List<InventorySlot>();
+        TimeData.GAMEDAY = 1;
+        TimeData.ENERGYWASTE = 0;
     }
     public void OnAfterDeserialize()
     {

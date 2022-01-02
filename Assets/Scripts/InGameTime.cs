@@ -3,9 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class GameTimeData
+{
+   public int GAMEDAY;
+   public int ENERGYWASTE;
+    public  GameTimeData(int _day,int energy)
+    {
+        GAMEDAY = _day;
+        ENERGYWASTE = energy;
+    }
+}
 public class InGameTime : MonoBehaviour
 {
-    [SerializeField] GameObject CanvasOne;
+    public InventoryObject data;
     [SerializeField] GameObject JR;
     [SerializeField] GameObject JRBack;
     [SerializeField] GameObject Light;
@@ -27,7 +38,7 @@ public class InGameTime : MonoBehaviour
 
     public int GameDay;
 
-    public int EnergyWaste;
+    public int EnergyWaste;    
 
     public static InGameTime instance;
 
@@ -37,16 +48,14 @@ public class InGameTime : MonoBehaviour
     }
     void Start()
     {
-        Start_A_New_Day(0);
+        data.Load();
+        TimeLoad(data.TimeData);
+        Start_A_New_Day(GameDay,EnergyWaste,0);           
     }
     
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.U))
-        //{
-        //    TimeForBed();
-        //}
-        
+
     }
 
     void PlusGameTime()
@@ -83,9 +92,9 @@ public class InGameTime : MonoBehaviour
             text.text = (Hour +" : "+ Min + " : "+Sec);
         }        
     }
-    public void Start_A_New_Day(int EnergyWaste)
+    public void Start_A_New_Day(int gameday,int EnergyWaste,int dayPassed)
     {
-        GameDay++;        
+        GameDay = gameday+dayPassed;        
         PassSec = 420 * 60 + EnergyWaste * 7200;
         PassMin = PassSec / 60;
         PassMin = Mathf.Clamp(PassMin, 420, 1500);
@@ -145,25 +154,34 @@ public class InGameTime : MonoBehaviour
             {
                 EnergyWaste = 0;
                 gotobed.AllPlantGrow();
-                Start_A_New_Day(0);
+                Start_A_New_Day(GameDay,0,1);
                 TimeToWake = false;
-                //change the UI
-                // push the wake up button
-                // change stat
+                Light.GetComponent<EnviormentalLight>().ResetLight();
+                JR.GetComponent<PlayerSprtieColorChange>().PlayerColorReset();
+                JRBack.GetComponent<PlayerSprtieColorChange>().PlayerColorReset();
             }
             else
             {
                 gotobed.AllPlantGrow();
-                Start_A_New_Day(EnergyWaste);
+                Start_A_New_Day(GameDay,EnergyWaste,1);
                 if (EnergyWaste == 3)
                 {
                     EnergyWaste = 0;                }
                 TimeToWake = false;
-                //change the UI
-                // push the wake up button
-                // change stat
+                Light.GetComponent<EnviormentalLight>().ResetLight();
+                JR.GetComponent<PlayerSprtieColorChange>().PlayerColorReset();
+                JRBack.GetComponent<PlayerSprtieColorChange>().PlayerColorReset();
             }
         }
     }
-
+    public void TimeSave(GameTimeData _data)
+    {
+        _data.GAMEDAY = GameDay;
+        _data.ENERGYWASTE = EnergyWaste;
+    }
+    public void TimeLoad(GameTimeData _data)
+    {
+        GameDay = _data.GAMEDAY;
+        EnergyWaste = _data.ENERGYWASTE;
+    }
 }
