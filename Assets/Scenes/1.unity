@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18012461, g: 0.22552387, b: 0.30682588, a: 1}
+  m_IndirectSpecularColor: {r: 0.18012436, g: 0.22552304, b: 0.3068248, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3236,7 +3236,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 26.5, y: -160.17126}
+  m_AnchoredPosition: {x: 26.5, y: -183.9}
   m_SizeDelta: {x: -307.7701, y: -354.9425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1599007445
@@ -4107,7 +4107,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -298.5, y: -159.4}
+  m_AnchoredPosition: {x: -298.5, y: -176.1}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2095279374
@@ -4790,10 +4790,10 @@ MonoBehaviour:
   InventoryPrefab: {fileID: 1349798934391500686, guid: 9b1ee45ef19d7404f8831c6b4ac9bac4, type: 3}
   inventory: {fileID: 11400000, guid: b38bd1e5a1fc8fb4bac9576bc43f3508, type: 2}
   X_START: -140
-  Y_START: 100
+  Y_START: 80
   X_SPACE_BETWEEN_ITEM: 70
   NUMBER_OF_COLUMN: 5
-  Y_SAPCE_BETWEEN_ITEM: 70
+  Y_SAPCE_BETWEEN_ITEM: 55
 --- !u!222 &6976303604990441171
 CanvasRenderer:
   m_ObjectHideFlags: 0
