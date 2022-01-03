@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UI_Controller : MonoBehaviour
 {
@@ -127,7 +128,7 @@ public class UI_Controller : MonoBehaviour
         }
         else if (InGameTime.instance.PassMin == 1140)
         {
-            DayCycleUI.GetComponent<Image>().sprite = DayCircle[2];
+            this.GetComponentInChildren<Animator>().enabled = true;
             StartCoroutine(Delay.DelayToInvokeDo(() => { DayCycleUI.GetComponent<Image>().sprite = DayCircle[2]; }, 0.5f));
             StartCoroutine(Delay.DelayToInvokeDo(() => { this.GetComponentInChildren<Animator>().enabled = false; }, 1f));
         }

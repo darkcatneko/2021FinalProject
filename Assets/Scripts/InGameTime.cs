@@ -61,6 +61,7 @@ public class InGameTime : MonoBehaviour
         TimeLoad(data.TimeData);
         TimeTranslate();
         DisPlayTime();
+        Light.GetComponent<EnviormentalLight>().UpdateLight();
         Light.GetComponent<EnviormentalLight>().UpdateLightStrong();
         JR.GetComponent<PlayerSprtieColorChange>().PlayerColorChange();
         JRBack.GetComponent<PlayerSprtieColorChange>().PlayerColorChange();
@@ -68,9 +69,7 @@ public class InGameTime : MonoBehaviour
     
     void Update()
     {
-        Light.GetComponent<EnviormentalLight>().UpdateLightStrong();
-        JR.GetComponent<PlayerSprtieColorChange>().PlayerColorChange();
-        JRBack.GetComponent<PlayerSprtieColorChange>().PlayerColorChange();
+
         if (Input.GetKeyDown(KeyCode.X))
         {
             PassSec = 54000;
@@ -81,6 +80,11 @@ public class InGameTime : MonoBehaviour
             PassSec = 61200;
             RealTimePass = 240;
         }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            PassSec = 22*3600;
+            RealTimePass = 240;
+        }
     }
 
     void PlusGameTime()
@@ -89,16 +93,10 @@ public class InGameTime : MonoBehaviour
         PassSec = Mathf.Clamp(PassSec, 420 * 60, 1500 * 60);
         PassMin = PassSec / 60;
         PassMin = Mathf.Clamp(PassMin, 420, 1500);
-        if (PassMin>=900&&PassMin<=1020)
-        {
-            Light.GetComponent<EnviormentalLight>().UpdateLight();
-        }
-        else if (PassMin>1020&&PassMin<=1140)
-        {
-            Light.GetComponent<EnviormentalLight>().UpdateLightStrong();
-            JR.GetComponent<PlayerSprtieColorChange>().PlayerColorChange();
-            JRBack.GetComponent<PlayerSprtieColorChange>().PlayerColorChange();
-        }
+        Light.GetComponent<EnviormentalLight>().UpdateLight();
+        Light.GetComponent<EnviormentalLight>().UpdateLightStrong();
+        JR.GetComponent<PlayerSprtieColorChange>().PlayerColorChange();
+        JRBack.GetComponent<PlayerSprtieColorChange>().PlayerColorChange();
         TimeTranslate();
         DisPlayTime();
     }
