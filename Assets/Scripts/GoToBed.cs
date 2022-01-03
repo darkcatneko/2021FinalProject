@@ -28,7 +28,7 @@ public class GoToBed : MonoBehaviour
     {
         if (Incollider == true)
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F) && player.GetComponentInParent<PlayerMovement>().playerState == PlayerState.FreeMove)
             {
                 InGameTime.instance.TimeForBed();//stop the clock 
                 player.GetComponentInParent<PlayerMovement>().IM_Sleeping();
