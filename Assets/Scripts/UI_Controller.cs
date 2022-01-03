@@ -71,9 +71,9 @@ public class UI_Controller : MonoBehaviour
         }
         else if (InGameTime.instance.PassMin == 1020)
         {
-            this.GetComponent<Animator>().enabled = true;
+            this.GetComponentInParent<Animator>().enabled = true;
             StartCoroutine(Delay.DelayToInvokeDo(() => { DayCycleUI.GetComponent<Image>().sprite = DayCircle[1]; }, 0.5f));
-            StartCoroutine(Delay.DelayToInvokeDo(() => { this.GetComponent<Animator>().enabled = false; }, 1f));
+            StartCoroutine(Delay.DelayToInvokeDo(() => { this.GetComponentInParent<Animator>().enabled = false; }, 1f));
 
         }
         else if(InGameTime.instance.PassMin > 1020 && InGameTime.instance.PassMin < 1140)
@@ -85,7 +85,7 @@ public class UI_Controller : MonoBehaviour
         {
             DayCycleUI.GetComponent<Image>().sprite = DayCircle[2];
             StartCoroutine(Delay.DelayToInvokeDo(() => { DayCycleUI.GetComponent<Image>().sprite = DayCircle[2]; }, 0.5f));
-            StartCoroutine(Delay.DelayToInvokeDo(() => { this.GetComponent<Animator>().enabled = false; }, 1f));
+            StartCoroutine(Delay.DelayToInvokeDo(() => { this.GetComponentInParent<Animator>().enabled = false; }, 1f));
         }
         else if (InGameTime.instance.PassMin > 1140)
         {
