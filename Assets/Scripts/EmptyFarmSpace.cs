@@ -42,12 +42,15 @@ public class EmptyFarmSpace : MonoBehaviour
                     switch(ItemBarDisplay.instance.items.item.Id)
                     {
                         case 1:
+                            other.GetComponentInParent<PlayerBackPack>().inventory.MinusAmount(ItemBarDisplay.instance.items.item, 1);
                             InstantiatePlant(WhichPlant.cabbage,0,PlantState.seed,false);
                             break;
                         case 3:
+                            other.GetComponentInParent<PlayerBackPack>().inventory.MinusAmount(ItemBarDisplay.instance.items.item, 1);
                             InstantiatePlant(WhichPlant.tomato,1, PlantState.seed,false);
                             break;
                         case 5:
+                            other.GetComponentInParent<PlayerBackPack>().inventory.MinusAmount(ItemBarDisplay.instance.items.item, 1);
                             InstantiatePlant(WhichPlant.corn,2, PlantState.seed,false);
                             break;
                             

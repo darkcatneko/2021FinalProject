@@ -99,6 +99,33 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
         item2.UpdateSlot(item1.ID, item1.item, item1.amount);
         item1.UpdateSlot(temp.ID, temp.item, temp.amount);
     }
+    public void MinusAmount(TrueItem _item,int Amount)
+    {
+        for (int i = 0; i < Container.Length; i++)
+        {
+            if (Container[i].item == _item)
+            {
+                if (Container[i].amount-Amount<=0)
+                {
+                    RemoveItem(_item);
+                }
+                else
+                {
+                    Container[i].UpdateSlot(_item.Id, _item, Container[i].amount - Amount);
+                }                
+            }
+        }
+    }
+    public void RemoveItem(TrueItem _item)
+    {
+        for (int i = 0; i < Container.Length; i++)
+        {
+            if (Container[i].item == _item)
+            {
+                Container[i].UpdateSlot(-1, null, 0);
+            }
+        }
+    }
     [ContextMenu("Save")]
     public void Save()
     {
