@@ -18,11 +18,25 @@ public class EnviormentalLight : MonoBehaviour
     }
     public void UpdateLight()
     {
-        this.GetComponent<Light>().color = new Color(1, (1 - ((1 - 0.73f) / 120) * (System.GetComponent<InGameTime>().PassMin -900)), (1 - ((1 - 0.25f) / 120) * (System.GetComponent<InGameTime>().PassMin - 900)));
+        if ((System.GetComponent<InGameTime>().PassMin - 900) >= 0)
+        {
+            this.GetComponent<Light>().color = new Color(1, (1 - ((1 - 0.73f) / 120) * (System.GetComponent<InGameTime>().PassMin - 900)), (1 - ((1 - 0.25f) / 120) * (System.GetComponent<InGameTime>().PassMin - 900)));
+        }
+        else
+        {
+            this.GetComponent<Light>().color = new Color(1, 1f, 1f, 1);
+        }
     }
     public void UpdateLightStrong()
     {
-        this.GetComponent<Light>().intensity =(6f - (6f / 120f * (System.GetComponent<InGameTime>().PassMin - 1020f)));
+        if ((System.GetComponent<InGameTime>().PassMin - 1020f)>=0)
+        {
+            this.GetComponent<Light>().intensity =(6f - (6f / 120f * (System.GetComponent<InGameTime>().PassMin - 1020f)));
+        }
+        else
+        {
+            this.GetComponent<Light>().intensity = 6;
+        }
     }
     public void ResetLight()
     {

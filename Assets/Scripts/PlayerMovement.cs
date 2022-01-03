@@ -10,6 +10,7 @@ public enum PlayerState
     Brewing,
     BackpackChoosing,
     battling,
+    MenuOpening,
 }
 
 public class PlayerMovement : MonoBehaviour

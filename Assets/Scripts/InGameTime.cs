@@ -61,11 +61,26 @@ public class InGameTime : MonoBehaviour
         TimeLoad(data.TimeData);
         TimeTranslate();
         DisPlayTime();
+        Light.GetComponent<EnviormentalLight>().UpdateLightStrong();
+        JR.GetComponent<PlayerSprtieColorChange>().PlayerColorChange();
+        JRBack.GetComponent<PlayerSprtieColorChange>().PlayerColorChange();
     }
     
     void Update()
     {
-
+        Light.GetComponent<EnviormentalLight>().UpdateLightStrong();
+        JR.GetComponent<PlayerSprtieColorChange>().PlayerColorChange();
+        JRBack.GetComponent<PlayerSprtieColorChange>().PlayerColorChange();
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            PassSec = 54000;
+            RealTimePass = 240;
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            PassSec = 61200;
+            RealTimePass = 240;
+        }
     }
 
     void PlusGameTime()
