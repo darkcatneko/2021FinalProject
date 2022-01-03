@@ -43,7 +43,6 @@ public class GoToBed : MonoBehaviour
         {
             Incollider = false;
             player = null;
-            playerInventory = null;
             Sign.GetComponentInChildren<Animator>().SetBool("Out",true);
             StartCoroutine(Delay.DelayToInvokeDo(() => { Sign.GetComponentInChildren<Animator>().SetBool("Out", false); Sign.SetActive(false); }, 0.5f));
         }
@@ -76,7 +75,8 @@ public class GoToBed : MonoBehaviour
         playerInventory.Save();
         StartCoroutine(Delay.DelayToInvokeDo(() => 
         {
-            player.GetComponentInParent<PlayerMovement>().playerState = PlayerState.FreeMove;
+
+            GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInParent<PlayerMovement>().playerState = PlayerState.FreeMove;
             CanvasLayer1.SetActive(false);
         }
         , 2.5f));

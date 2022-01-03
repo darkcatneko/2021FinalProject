@@ -18,6 +18,8 @@ public class GameTimeData
 }
 public class InGameTime : MonoBehaviour
 {
+    AudioSource audioSource;
+    public AudioClip NightSF;
     public InventoryObject data;
     [SerializeField] GameObject JR;
     [SerializeField] GameObject JRBack;
@@ -123,9 +125,10 @@ public class InGameTime : MonoBehaviour
         EnergyWaste++;
         if (EnergyWaste == 3)
         {
-            CancelInvoke();
-            TimeToWake = true;
-            Debug.Log("YouAreTooTired");
+            TimeForBed();
+            JR.GetComponentInParent<PlayerMovement>().IM_Sleeping();
+            audioSource = GameObject.FindGameObjectWithTag("system").GetComponent<AudioSource>();
+            audioSource.PlayOneShot(NightSF, 1f * GameObject.FindGameObjectWithTag("system").GetComponent<BGM_Center>().volume);
         }
     }
     void TimeTranslate()
@@ -154,6 +157,9 @@ public class InGameTime : MonoBehaviour
             DisPlayTime();
             ToTired();
             TimeForBed();
+            JR.GetComponentInParent<PlayerMovement>().IM_Sleeping();
+            audioSource = GameObject.FindGameObjectWithTag("system").GetComponent<AudioSource>();
+            audioSource.PlayOneShot(NightSF, 1f * GameObject.FindGameObjectWithTag("system").GetComponent<BGM_Center>().volume);
         }
     }
     public void WakeUpButton()

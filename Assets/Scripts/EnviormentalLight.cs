@@ -27,5 +27,6 @@ public class EnviormentalLight : MonoBehaviour
     public void ResetLight()
     {
         this.GetComponent<Light>().intensity = 6;
+        this.GetComponent<Light>().color = new Color(1, 1, 1, 1);
     }
 }

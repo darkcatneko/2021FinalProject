@@ -9,6 +9,10 @@ public class PlayerSprtieColorChange : MonoBehaviour
     private void Start()
     {
         sprites  = this.GetComponentsInChildren<SpriteRenderer>();
+        if (this.gameObject.name == "JR back")
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
