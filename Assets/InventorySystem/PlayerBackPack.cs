@@ -26,16 +26,6 @@ public class PlayerBackPack : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            InGameTime.instance.TimeSave(inventory.TimeData);//存時間
-            inventory.Save();
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            inventory.Load();
-            inventory.EmptyFarmLoad();
-        }
         if (Input.GetKeyDown(KeyCode.C))
         {            
             AddStarterItem();          
@@ -47,5 +37,10 @@ public class PlayerBackPack : MonoBehaviour
         {
             AddItemInBackPack(starterPack[i], 1);
         }
+    }
+    public void SaveButton()
+    {
+        InGameTime.instance.TimeSave(inventory.TimeData);//存時間
+        inventory.Save();
     }
 }

@@ -13,6 +13,8 @@ public class UI_Controller : MonoBehaviour
     public GameObject DayCycleUI;
     public GameObject PlayerStatusUI;
 
+    [SerializeField] GameObject MenuBar;
+
     public GameObject BackPack;
     public PlayerMovement player;
     public Sprite[] DayCircle;
@@ -51,6 +53,28 @@ public class UI_Controller : MonoBehaviour
                 player.playerState = PlayerState.FreeMove;
             }                
         }
+    }
+    public void StopPressed()
+    {
+        MenuBar.SetActive(true);
+        player.playerState = PlayerState.MenuOpening;
+        Time.timeScale = 0f;        
+    }
+    public void Resume()
+    {
+        MenuBar.SetActive(false);
+        Time.timeScale = 1f;
+        if (BackPack.activeSelf)
+        {
+            player.playerState = PlayerState.BackpackChoosing;
+        }
+        else
+        { player.playerState = PlayerState.FreeMove; }
+
+    }
+    public void Quit()
+    {
+        Application.Quit();
     }
     public void BackOpen()
     {
