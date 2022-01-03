@@ -18,7 +18,7 @@ public class PlayerBackPack : MonoBehaviour
     public void AddItemInBackPack(ItemObject item, int _amount)
     {        
         inventory.AddItem(new TrueItem(item), _amount);
-        ItemBarDisplay.instance.OnLoad();
+        //ItemBarDisplay.instance.OnLoad();
     }
     private void OnApplicationQuit()
     { 
@@ -37,10 +37,8 @@ public class PlayerBackPack : MonoBehaviour
             inventory.EmptyFarmLoad();
         }
         if (Input.GetKeyDown(KeyCode.C))
-        {
-            inventory.Clear();
-            AddStarterItem();
-            inventory.SaveEmpty();
+        {            
+            AddStarterItem();          
         }
     }
     public void AddStarterItem()

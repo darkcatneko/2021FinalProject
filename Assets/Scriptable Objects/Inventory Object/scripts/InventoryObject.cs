@@ -12,7 +12,7 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
     private ItemDatabaseObject data;
     public GameTimeData TimeData;
     public List<PlantIdentity> emptyfarmData = new List<PlantIdentity>();
-    public List<InventorySlot> Container = new List<InventorySlot>();
+    public InventorySlot[] Container = new InventorySlot[20];
 
     private void OnEnable()
     {
@@ -62,21 +62,42 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
 
 
     public void AddItem(TrueItem _item,int _amount)
-    {
-        if (_item.buffs.Length>0)
+    {        
+        if (_item.buffs.Length > 0)
         {
-            Container.Add(new InventorySlot(_item.Id, _item, _amount));
+            //Container.Add(new InventorySlot(_item.Id, _item, _amount));
+            SetEmptySlot(_item, _amount);
             return;
         }
-        for (int i = 0; i < Container.Count; i++)
+        for (int i = 0; i < Container.Length; i++)
         {
-            if (Container[i].item.Id == _item.Id)
+            if (Container[i].ID == _item.Id)
             {
                 Container[i].AddAmount(_amount);
-                return;               
+                return;
             }
         }
-        Container.Add(new InventorySlot(_item.Id,_item, _amount));        
+        //Container.Add(new InventorySlot(_item.Id, _item, _amount));
+        SetEmptySlot(_item, _amount);
+    }
+    public InventorySlot SetEmptySlot(TrueItem _item,int _amount)
+    {
+        for (int i = 0; i < Container.Length; i++)
+        {
+            if (Container[i].ID<=-1)
+            {
+               Container[i].UpdateSlot(_item.Id,_item,_amount);
+               return Container[i];
+            }
+        }
+        //set up if inventory is full
+        return null;
+    }
+    public void MoveItem(InventorySlot item1, InventorySlot item2)
+    {
+        InventorySlot temp = new InventorySlot(item2.ID, item2.item, item2.amount);
+        item2.UpdateSlot(item1.ID, item1.item, item1.amount);
+        item1.UpdateSlot(temp.ID, temp.item, temp.amount);
     }
     [ContextMenu("Save")]
     public void Save()
@@ -97,14 +118,17 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(string.Concat(Application.persistentDataPath, savePath), FileMode.Open);
             JsonUtility.FromJsonOverwrite(bf.Deserialize(file).ToString(),this);
-            ItemBarDisplay.instance.OnLoad();            
+            //ItemBarDisplay.instance.OnLoad();            
             file.Close();
         }
     }
     [ContextMenu("Clear")]
     public void Clear()
     {
-        Container = new List<InventorySlot>();
+        for (int i = 0; i < Container.Length; i++)
+        {
+            Container[i].Reset();
+        }
         emptyfarmData = new List<PlantIdentity>();
         for (int i = 0; i < 6; i++)
         {
@@ -126,9 +150,12 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
 
     public void OnAfterDeserialize()
     {
-        for (int i = 0; i < Container.Count; i++)
+        for (int i = 0; i < Container.Length; i++)
         {
-            Container[i].item =new TrueItem(data.GetItem[Container[i].ID]);
+            if (Container[i].ID>0)
+            {
+                Container[i].item =new TrueItem(data.GetItem[Container[i].ID]);
+            }           
         }
     }
 
@@ -148,6 +175,25 @@ public class InventorySlot
         ID = _id;
         item = _item;
         amount = _amount;
+    }
+    public InventorySlot()
+    {
+        ID = -1;
+        item = null;
+        amount = 0;
+    }
+    public void Reset()
+    {
+        ID = -1;
+        item = null;
+        amount = 0;
+    }
+    public void UpdateSlot(int _id, TrueItem _item, int _amount)
+    {       
+            ID = _id;
+            item = _item;
+            amount = _amount;
+       
     }
     public void AddAmount(int value)
     {

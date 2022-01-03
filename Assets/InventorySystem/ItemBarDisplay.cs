@@ -20,7 +20,7 @@ public class ItemBarDisplay : MonoBehaviour
     int MainToolNum = 0;
     public InventorySlot items;
 
-    Dictionary<InventorySlot, GameObject> itemsDisplayed = new Dictionary<InventorySlot, GameObject>();
+    Dictionary<GameObject, InventorySlot> itemsDisplayed = new Dictionary<GameObject, InventorySlot>();
     public static ItemBarDisplay instance;
     private void Awake()
     {
@@ -28,21 +28,21 @@ public class ItemBarDisplay : MonoBehaviour
     }
     void Start()
     {
-        //CreateDisplay();        
+        CreateSlots();
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateDisplay();
-        if (inventory.Container.Count>0)
+        UpdateSlot();
+        if (inventory.Container.Length>0)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 audioSource =  GameObject.FindGameObjectWithTag("system").GetComponent<AudioSource>();
                 audioSource.PlayOneShot(ItemChangeSF,0.2f* GameObject.FindGameObjectWithTag("system").GetComponent<BGM_Center>().volume);
                 MainToolNum--;
-                MainToolNum = Mathf.Clamp(MainToolNum, 0, Mathf.Clamp(inventory.Container.Count-1, 0, 5));
+                MainToolNum = Mathf.Clamp(MainToolNum, 0, Mathf.Clamp(inventory.Container.Length-1, 0, 5));
                 Debug.Log(MainToolNum);
                 if (inventory.Container[MainToolNum] != null)
                 {
@@ -55,7 +55,7 @@ public class ItemBarDisplay : MonoBehaviour
                 audioSource = GameObject.FindGameObjectWithTag("system").GetComponent<AudioSource>();
                 audioSource.PlayOneShot(ItemChangeSF, 0.2f * GameObject.FindGameObjectWithTag("system").GetComponent<BGM_Center>().volume);
                 MainToolNum++;
-                MainToolNum = Mathf.Clamp(MainToolNum, 0, Mathf.Clamp(inventory.Container.Count-1, 0, 5));
+                MainToolNum = Mathf.Clamp(MainToolNum, 0, Mathf.Clamp(inventory.Container.Length-1, 0, 5));
                 Debug.Log(MainToolNum);
                 items = inventory.Container[MainToolNum];
                 Focus.GetComponent<RectTransform>().localPosition = GetPosition(MainToolNum);
@@ -63,33 +63,36 @@ public class ItemBarDisplay : MonoBehaviour
             }
         }        
     }
-    public void UpdateDisplay()
+    public void UpdateSlot()
     {
-        for (int i = 0; i < Mathf.Clamp(inventory.Container.Count,0,NUMBER_OF_COLUMN); i++)
+        foreach (KeyValuePair<GameObject, InventorySlot> _slot in itemsDisplayed)
         {
-            if (itemsDisplayed.ContainsKey(inventory.Container[i]))
+            if (_slot.Value.ID >= 0)
             {
-                itemsDisplayed[inventory.Container[i]].GetComponentInChildren<Text>().text = inventory.Container[i].amount.ToString("n0");
+                _slot.Key.GetComponentsInChildren<Image>()[1].sprite = inventory.GetItem(_slot.Value.ID).sprite;
+                _slot.Key.GetComponentsInChildren<Image>()[1].color = new Color(1, 1, 1, 1);
+                _slot.Key.GetComponentInChildren<Text>().text = _slot.Value.amount.ToString("n0");
+
             }
             else
             {
-                var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity, transform);
-                obj.GetComponent<Image>().sprite = inventory.GetItem(inventory.Container[i].item.Id).sprite;
-                obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
-                obj.GetComponentInChildren<Text>().text = inventory.Container[i].amount.ToString("n0");
-                itemsDisplayed.Add(inventory.Container[i], obj);
+                _slot.Key.GetComponentsInChildren<Image>()[1].sprite = null;
+                _slot.Key.GetComponentsInChildren<Image>()[1].color = new Color(1, 1, 1, 0);
+                _slot.Key.GetComponentInChildren<Text>().text = "";
             }
         }
+
     }
-    public void CreateDisplay()
+    public void CreateSlots()
     {
-        for (int i = 0; i < Mathf.Clamp(inventory.Container.Count, 0,NUMBER_OF_COLUMN); i++)
+        itemsDisplayed = new Dictionary<GameObject, InventorySlot>();
+        for (int i = 0; i < NUMBER_OF_COLUMN; i++)
         {
             var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity, transform);
-            obj.GetComponent<Image>().sprite = inventory.GetItem(inventory.Container[i].item.Id).sprite;
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
-            obj.GetComponentInChildren<Text>().text = inventory.Container[i].amount.ToString("n0");
+            itemsDisplayed.Add(obj, inventory.Container[i]);
         }
+
     }
     public Vector3 GetPosition(int i)
     {
@@ -97,7 +100,7 @@ public class ItemBarDisplay : MonoBehaviour
     }
     public void OnLoad()
     {
-        if (inventory.Container.Count>0)
+        if (inventory.Container.Length>0)
         {
             items = inventory.Container[0];
         }        
