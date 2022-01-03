@@ -88,11 +88,13 @@ public class ItemBarDisplay : MonoBehaviour
         itemsDisplayed = new Dictionary<GameObject, InventorySlot>();
         for (int i = 0; i < NUMBER_OF_COLUMN; i++)
         {
-            var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity, transform);
+            var obj = Instantiate(InventoryPrefab, Vector3.zero, Quaternion.identity,transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
             itemsDisplayed.Add(obj, inventory.Container[i]);
         }
-
+        var obj2 = Instantiate(Focus, Vector3.zero, Quaternion.identity, transform);
+        Focus = obj2;
+        Focus.GetComponent<RectTransform>().localPosition = GetPosition(0);
     }
     public Vector3 GetPosition(int i)
     {
