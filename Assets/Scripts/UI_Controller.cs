@@ -43,10 +43,13 @@ public class UI_Controller : MonoBehaviour
             }
             
         }
-        if (Input.GetKeyDown(KeyCode.Escape) && BackPack.activeSelf == true)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if ( BackPack.activeSelf == true)
+            {
                 BackPack.SetActive(false);
                 player.playerState = PlayerState.FreeMove;
+            }                
         }
     }
     public void BackOpen()
