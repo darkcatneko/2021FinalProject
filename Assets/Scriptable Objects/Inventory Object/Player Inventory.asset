@@ -42,4 +42,144 @@ MonoBehaviour:
     Is_fertilize: 0
     plantState: 0
     which: 0
-  Container: []
+  Container:
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
+  - ID: -1
+    item:
+      Name: 
+      Id: 0
+      type: 0
+      buffs: []
+    amount: 0
