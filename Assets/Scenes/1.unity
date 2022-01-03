@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3664deaa8ee4dd479f584023adf6dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 1
+  volume: 0.5
 --- !u!1001 &45015468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3044,11 +3044,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5000007, y: 2.500001, z: 2.5000017}
   m_Center: {x: 0.000000059604666, y: 0.00000005960465, z: -0.000000059604666}
---- !u!1 &1506256165 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6188093560038590774, guid: ce248a8396749f14cbe1cd302447c25b, type: 3}
-  m_PrefabInstance: {fileID: 1764582248}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1520791702
 GameObject:
   m_ObjectHideFlags: 0
@@ -3775,14 +3770,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 420387246466687300, guid: ce248a8396749f14cbe1cd302447c25b, type: 3}
-      propertyPath: Sign
-      value: 
-      objectReference: {fileID: 1506256165}
-    - target: {fileID: 420387246466687300, guid: ce248a8396749f14cbe1cd302447c25b, type: 3}
-      propertyPath: PlantSF
-      value: 
-      objectReference: {fileID: 8300000, guid: 9afe86cd4d0410c438cc9d4dfd2c3bf2, type: 3}
     - target: {fileID: 1063357604608280767, guid: ce248a8396749f14cbe1cd302447c25b, type: 3}
       propertyPath: m_Name
       value: EmptyFarmSpace
@@ -4402,10 +4389,6 @@ PrefabInstance:
     - target: {fileID: 2318548379584163449, guid: 868d3cd63dc17894ba3c3a6b784ed676, type: 3}
       propertyPath: m_Name
       value: N
-      objectReference: {fileID: 0}
-    - target: {fileID: 2318548379584163449, guid: 868d3cd63dc17894ba3c3a6b784ed676, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2318548379629609546, guid: 868d3cd63dc17894ba3c3a6b784ed676, type: 3}
       propertyPath: m_Camera
