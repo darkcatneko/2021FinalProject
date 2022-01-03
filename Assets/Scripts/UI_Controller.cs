@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UI_Controller : MonoBehaviour
 {
     public static UI_Controller instance;
-  
+
     public Text Daytext;
     public Text Timetext;
 
@@ -23,13 +23,30 @@ public class UI_Controller : MonoBehaviour
     }
     private void Update()
     {
-        Daytext.text ="4 / " +InGameTime.instance.GameDay.ToString();
+        Daytext.text = "4 / " + InGameTime.instance.GameDay.ToString();
         PlayerStatusUpdate();
         DaycycleUIUpdate();
-        if (Input.GetKeyDown(KeyCode.Escape)&& BackPack.activeSelf == true)
+        if (Input.GetKeyDown(KeyCode.B) )
         {
-            BackPack.SetActive(false);
-            player.playerState = PlayerState.FreeMove;
+            if ( BackPack.activeSelf == false && player.playerState == PlayerState.FreeMove)
+            {
+                BackPack.SetActive(true);
+                player.movement.x = 0;
+                player.movement.z = 0;
+                player.setAnimate();
+                player.playerState = PlayerState.BackpackChoosing;
+            }
+            else if (BackPack.activeSelf == true)
+            {
+                BackPack.SetActive(false);
+                player.playerState = PlayerState.FreeMove;
+            }
+            
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && BackPack.activeSelf == true)
+        {
+                BackPack.SetActive(false);
+                player.playerState = PlayerState.FreeMove;
         }
     }
     public void BackOpen()

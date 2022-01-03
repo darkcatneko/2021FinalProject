@@ -14,7 +14,16 @@ public class LoadingUIController : MonoBehaviour
     [SerializeField] string savePath;
     private void Start()
     {
-        
+        if (File.Exists(string.Concat(Application.persistentDataPath, savePath)))
+        {
+            Havefile.SetActive(true);
+            DontHaveFile.SetActive(false);
+        }
+        else
+        {
+            Havefile.SetActive(false);
+            DontHaveFile.SetActive(true);
+        }
     }
     public void AddItemInBackPack(ItemObject item, int _amount)
     {
@@ -26,16 +35,7 @@ public class LoadingUIController : MonoBehaviour
     }
     private void Update()
     {
-        if (File.Exists(string.Concat(Application.persistentDataPath, savePath)))
-        {
-            Havefile.SetActive(true);
-            DontHaveFile.SetActive(false);
-        }
-        else
-        {
-            Havefile.SetActive(false);
-            DontHaveFile.SetActive(true);
-        }
+        
         if (Input.GetKeyDown(KeyCode.M))
         {
             InGameTime.instance.TimeSave(inventory.TimeData);//¦s®É¶¡
