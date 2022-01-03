@@ -8,8 +8,10 @@ public class GameTimeData
 {
    public int GAMEDAY;
    public int ENERGYWASTE;
-    public  GameTimeData(int _day,int energy)
+    public int PASSSEC;
+    public  GameTimeData(int _day,int energy,int sec)
     {
+        PASSSEC = sec;
         GAMEDAY = _day;
         ENERGYWASTE = energy;
     }
@@ -54,6 +56,9 @@ public class InGameTime : MonoBehaviour
         data.Load();
         TimeLoad(data.TimeData);
         Start_A_New_Day(GameDay,EnergyWaste,0);
+        TimeLoad(data.TimeData);
+        TimeTranslate();
+        DisPlayTime();
     }
     
     void Update()
@@ -98,10 +103,6 @@ public class InGameTime : MonoBehaviour
     public void Start_A_New_Day(int gameday,int EnergyWaste,int dayPassed)
     {
         GameDay = gameday+dayPassed;
-        if (instance.GameDay == 1)
-        {
-            JR.GetComponentInParent<PlayerBackPack>().AddStarterItem();
-        }
         PassSec = 420 * 60 + EnergyWaste * 7200;
         PassMin = PassSec / 60;
         PassMin = Mathf.Clamp(PassMin, 420, 1500);
@@ -187,9 +188,11 @@ public class InGameTime : MonoBehaviour
     {
         _data.GAMEDAY = GameDay;
         _data.ENERGYWASTE = EnergyWaste;
+        _data.PASSSEC = PassSec;
     }
     public void TimeLoad(GameTimeData _data)
     {
+        PassSec = _data.PASSSEC;
         GameDay = _data.GAMEDAY;
         EnergyWaste = _data.ENERGYWASTE;
     }

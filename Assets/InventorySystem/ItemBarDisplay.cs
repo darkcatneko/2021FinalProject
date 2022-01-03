@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class ItemBarDisplay : MonoBehaviour
 {
+    public AudioClip ItemChangeSF;
+    AudioSource audioSource;
     public GameObject Focus;
     public GameObject InventoryPrefab;
     public InventoryObject inventory;
@@ -26,7 +28,7 @@ public class ItemBarDisplay : MonoBehaviour
     }
     void Start()
     {
-        CreateDisplay();        
+        //CreateDisplay();        
     }
 
     // Update is called once per frame
@@ -37,6 +39,8 @@ public class ItemBarDisplay : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
+                audioSource =  GameObject.FindGameObjectWithTag("system").GetComponent<AudioSource>();
+                audioSource.PlayOneShot(ItemChangeSF,0.2f* GameObject.FindGameObjectWithTag("system").GetComponent<BGM_Center>().volume);
                 MainToolNum--;
                 MainToolNum = Mathf.Clamp(MainToolNum, 0, Mathf.Clamp(inventory.Container.Count-1, 0, 5));
                 Debug.Log(MainToolNum);
@@ -48,6 +52,8 @@ public class ItemBarDisplay : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
+                audioSource = GameObject.FindGameObjectWithTag("system").GetComponent<AudioSource>();
+                audioSource.PlayOneShot(ItemChangeSF, 0.2f * GameObject.FindGameObjectWithTag("system").GetComponent<BGM_Center>().volume);
                 MainToolNum++;
                 MainToolNum = Mathf.Clamp(MainToolNum, 0, Mathf.Clamp(inventory.Container.Count-1, 0, 5));
                 Debug.Log(MainToolNum);

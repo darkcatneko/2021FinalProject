@@ -85,6 +85,7 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
         string saveData = JsonUtility.ToJson(this, true);
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(string.Concat(Application.persistentDataPath, savePath));
+        Debug.Log(string.Concat(Application.persistentDataPath, savePath));
         bf.Serialize(file, saveData);
         file.Close();
     }
@@ -105,14 +106,13 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
     {
         Container = new List<InventorySlot>();
         emptyfarmData = new List<PlantIdentity>();
-        GameObject[] EmptyFarms;
-        EmptyFarms = GameObject.FindGameObjectsWithTag("Emptyfarm");
-        for (int i = 0; i < EmptyFarms.Length; i++)
+        for (int i = 0; i < 6; i++)
         {
             emptyfarmData.Add(new PlantIdentity(PlantState.seed, WhichPlant.EmptySpace, i, false));
         }
         TimeData.GAMEDAY = 1;
         TimeData.ENERGYWASTE = 0;
+        TimeData.PASSSEC = 420 * 60;
     }
     [ContextMenu("SaveEmpty")]
     public void SaveEmpty()

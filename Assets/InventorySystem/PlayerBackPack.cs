@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBackPack : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class PlayerBackPack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
+            InGameTime.instance.TimeSave(inventory.TimeData);//¦s®É¶¡
             inventory.Save();
         }
         if (Input.GetKeyDown(KeyCode.N))

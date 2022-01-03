@@ -16,6 +16,7 @@ MonoBehaviour:
   TimeData:
     GAMEDAY: 1
     ENERGYWASTE: 0
+    PASSSEC: 25200
   emptyfarmData:
   - plantspaceID: 0
     Is_fertilize: 0
