@@ -37,7 +37,7 @@ public class EmptyFarmSpace : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Player") && ItemBarDisplay.instance.items.item != null)
             {
-                if (Input.GetKeyDown(KeyCode.F) && PlantSaveFile.which == WhichPlant.EmptySpace && other.GetComponentInParent<PlayerMovement>().movement.z <= 0 && ItemBarDisplay.instance.items.item.type==ItemType.Seed&&ItemBarDisplay.instance.items!=null)//plant a cabbage
+                if (Input.GetKeyDown(KeyCode.F) && PlantSaveFile.which == WhichPlant.EmptySpace && other.GetComponentInParent<PlayerMovement>().movement.z <= 0 && ItemBarDisplay.instance.items.item.type==ItemType.Seed&&ItemBarDisplay.instance.items!=null && other.GetComponentInParent<PlayerMovement>().playerState == PlayerState.FreeMove)//plant a cabbage
                 {
                     switch(ItemBarDisplay.instance.items.item.Id)
                     {
